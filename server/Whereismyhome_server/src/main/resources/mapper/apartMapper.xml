@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+	namespace="com.ssafy.whereismyhome.apart.model.mapper.ApartMapper">
+
+	<resultMap type="apartDto" id="apartList">
+		<result column="aptCode" property="aptCode" />
+		<result column="apartmentName" property="apartmentName" />
+		<result column="dealAmount" property="dealAmount" />
+	</resultMap>
+
+	<select id="getAparts" resultMap="apartList">
+		select * from
+		housedeal;
+	</select>
+
+	<select id="getApartByCode" parameterType="long"
+		resultMap="apartList">
+		select * from
+		housedeal
+		where aptCode=#{aptCode};
+	</select>
+
+	<select id="getApartByDong" parameterType="string"
+		resultMap="apartList">
+		select * from
+		houseinfo
+		join housedeal
+		on houseinfo.aptCode = housedeal.aptCode
+		where dong=#{dong};
+	</select>
+	
+	<select id="getDealByNo" parameterType="long"
+		resultType="apartDto">
+		select * from
+		housedeal
+		join houseinfo
+		on housedeal.aptCode = houseinfo.aptCode
+		where no=#{dealNo};
+	</select>
+
+</mapper>

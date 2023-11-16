@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.whereismyhome.admin.model.mapper.AdminMapper">
+
+	<resultMap type="getUserDto" id="userList">
+		<result column="userId" property="userId"/>
+		<result column="username" property="userName"/>
+		<result column="userpwd" property="userPwd"/>
+		<result column="userEmail" property="userEmail"/>
+		<result column="birthDate" property="birthDate"/>
+		<result column="userTel" property="userTel"/>
+		<result column="joindate" property="joinDate"/>
+	</resultMap>
+	
+	<insert id="addUser" parameterType="registerUserDto">
+		insert into member (userId, username, userpwd, userEmail, birthDate, userTel, joindate)
+		values (#{userId}, #{userName}, #{userPwd}, #{userEmail}, #{birthDate}, #{userTel}, now());
+	</insert>
+
+	<select id="getUsers" resultMap="userList">
+		select * from
+		member;
+	</select>
+	
+	<select id="getUser" parameterType="string" resultType="getUserDto">
+		select * from member
+		where userId=#{userId};
+	</select>
+	
+	<select id="searchUser" parameterType="string" resultType="getUserDto">
+		select * from member
+		where username = #{userName};
+	</select>
+	
+	<update id="updateUser" parameterType="updateUserDto">
+		update member set username = #{updateUserDto.userName}, userpwd = #{updateUserDto.userPwd}, userEmail = #{updateUserDto.userEmail}, birthDate = #{updateUserDto.birthDate}, userTel = #{updateUserDto.userTel}
+		where userId=#{userId};
+	</update>
+	
+	<delete id="deleteUser" parameterType="string">
+		delete from member
+		where userId = #{userId}
+	</delete>
+
+</mapper>
