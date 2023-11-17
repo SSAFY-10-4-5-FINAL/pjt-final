@@ -8,37 +8,63 @@
 	<resultMap type="apartDto" id="apartList">
 		<result column="aptCode" property="aptCode" />
 		<result column="apartmentName" property="apartmentName" />
-		<result column="dealAmount" property="dealAmount" />
+		<result column="lat" property="lat" />
+		<result column="lng" property="lng" />
+		<result column="sidoName" property="sidoName" />
+		<result column="gugunName" property="gugunName" />
+		<result column="roadName" property="roadName" />
 	</resultMap>
+
+	
+	<resultMap type="DealInfoDto" id="dealInfoList">
+		<result column="dealAmount" property="dealAmount" />
+		<result column="dealYear" property="dealYear" />
+		<result column="dealMonth" property="dealMonth" />
+		<result column="area" property="area" />
+		<result column="floor" property="floor" />
+	</resultMap>
+	
 
 	<select id="getAparts" resultMap="apartList">
 		select * from
-		housedeal;
-	</select>
-
-	<select id="getApartByCode" parameterType="long"
-		resultMap="apartList">
-		select * from
-		housedeal
-		where aptCode=#{aptCode};
-	</select>
-
-	<select id="getApartByDong" parameterType="string"
-		resultMap="apartList">
-		select * from
-		houseinfo
-		join housedeal
-		on houseinfo.aptCode = housedeal.aptCode
-		where dong=#{dong};
+		apart
+		join dongcode;
 	</select>
 	
-	<select id="getDealByNo" parameterType="long"
+	<select id="getApartByDongCode" parameterType="String"
+		resultMap="apartList">
+		select aptCode, apartmentName, lat, lng, sidoName, gugunName, roadName
+		from apart
+		join dongcode d
+		on apart.dongCode = d.dongCode
+		where apart.dongCode=#{dongCode};
+	</select>
+
+
+	<select id="getApartByCode" parameterType="long"
 		resultType="apartDto">
+		select aptCode, apartmentName, lat, lng, sidoName, gugunName, roadName
+		from apart
+		join dongcode d
+		on apart.dongCode = d.dongCode
+		where aptCode = #{aptCode};
+	</select>
+	
+	<select id="getDealInfoListByCode" parameterType="long"
+		resultMap="dealInfoList">
+		select dealAmount, dealYear, dealMonth, area, floor
+		from apartdeal
+		where aptCode = #{aptCode};
+	</select>
+
+	<select id="getDealByNo" parameterType="long"
+		resultType="apartDealDto">
 		select * from
-		housedeal
-		join houseinfo
+		apartdeal
+		join apart
 		on housedeal.aptCode = houseinfo.aptCode
 		where no=#{dealNo};
 	</select>
+	
 
 </mapper>
