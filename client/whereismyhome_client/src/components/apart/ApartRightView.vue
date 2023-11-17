@@ -29,6 +29,7 @@ const inputText = ref("");
         <a href="#">관심 아파트</a><span> | </span><a href="#">관심 지역</a>
       </div>
     </div>
+    <div class="list-wrap">gdgd</div>
   </div>
 </template>
 
