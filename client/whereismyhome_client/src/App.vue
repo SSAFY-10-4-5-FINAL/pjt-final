@@ -1,7 +1,11 @@
-<script setup></script>
+<script setup>
+import TheNav from "./components/layouts/TheNav.vue";
+import ApartView from "./views/ApartView.vue";
+</script>
 
 <template>
-  <h2>hihihi</h2>
+  <TheNav />
+  <ApartView />
 </template>
 
 <style scoped></style>
