@@ -1,9 +1,22 @@
 #right-bar {
   border-left: 1px solid;
-  height: 100vh;
   padding: 10px;
+  display: grid;
 }
 
+/* right-bar grid 내에서 차지할 높이 설정 */
+/* search-select-wrap */
+.item:nth-child(1) {
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+/* list-detail-wrap */
+.item:nth-child(2) {
+  grid-row-start: 2;
+  grid-row-end: 12;
+}
+
+/* toggle part */
 #toggle-btn-wrap {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   text-size-adjust: none;
@@ -17,16 +30,15 @@
   text-align: right;
   width: 100%;
 }
-
 #toggle-btn {
   font-size: 13px;
 }
-
 .toggle-text {
   font-size: 13px;
   margin: 5px;
 }
 
+/* ---------- Selection part ---------- */
 .search-select-wrap {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   text-size-adjust: none;
@@ -38,6 +50,7 @@
   vertical-align: baseline;
 }
 
+/* input part */
 .search-input-liner {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   text-size-adjust: none;
@@ -63,11 +76,11 @@
   font: inherit;
   vertical-align: baseline;
   float: left;
-  padding: 0px 10px;
+  padding: 0px 5px;
   position: relative;
   overflow: hidden;
+  width: 84%;
 }
-
 input {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   text-size-adjust: none;
@@ -79,24 +92,6 @@ input {
   outline: none;
   box-shadow: none;
   font-size: 13px;
-}
-
-.btn-clear {
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  text-size-adjust: none;
-  -webkit-box-direction: normal;
-  font-family: "SpoqaHanSans";
-  padding: 0px;
-  border: 0px;
-  margin: 0px;
-  vertical-align: middle;
-  cursor: pointer;
-  position: absolute;
-  display: none;
-  width: 50px;
-  height: 50px;
-  background: url("https://s.zigbang.com/www/images/ic_searchbar_close_20x20_nor_black_slim.png")
-    center center / 20px 20px no-repeat transparent;
 }
 
 .btn-search-wrap {
@@ -114,7 +109,6 @@ input {
   height: 50px;
   overflow: hidden;
 }
-
 .btn-search {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   text-size-adjust: none;
@@ -131,23 +125,23 @@ input {
     center center / 100% no-repeat transparent;
 }
 
+/* star part */
 #star-link {
   text-align: center;
   font-size: 13px;
   width: 100%;
 }
-
 #star-link a {
   color: #708090;
   text-decoration: none;
 }
-
 #star-link a:visited {
   color: #708090;
   text-decoration: none;
 }
 
-#list-wrap {
+/* ---------- List, Detail part ---------- */
+#list-detail-wrap {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   text-size-adjust: none;
   -webkit-box-direction: normal;

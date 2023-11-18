@@ -7,7 +7,7 @@ const inputText = ref("");
 
 <template>
   <div class="container-fluid" id="right-bar">
-    <div class="search-select-wrap">
+    <div class="search-select-wrap item">
       <div id="toggle-btn-wrap">
         <span class="toggle-text">아파트</span
         ><button id="toggle-btn">toggle</button
@@ -21,7 +21,6 @@ const inputText = ref("");
             v-model="inputText"
           />
         </div>
-        <button class="btn-clear on"></button>
         <div class="btn-search-wrap"><button class="btn-search"></button></div>
       </div>
       <div id="star-link">
@@ -29,7 +28,7 @@ const inputText = ref("");
         <a href="#">관심 아파트</a><span> | </span><a href="#">관심 지역</a>
       </div>
     </div>
-    <div class="list-wrap">gdgd</div>
+    <div class="list-detail-wrap item"><RouterView />></div>
   </div>
 </template>
 

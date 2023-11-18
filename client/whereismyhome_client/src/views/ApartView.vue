@@ -18,15 +18,13 @@ import ApartRightView from "@/components/apart/ApartRightView.vue";
 }
 
 .item:nth-child(1) {
-  /* 1번 라인에서 9칸 */
+  /* 1번 라인에서 11 */
   grid-column-start: 1;
   grid-column-end: 11;
-  height: 100vh;
 }
 .item:nth-child(2) {
-  /* 1번 라인에서 3 */
+  /* 11번 라인에서 12 */
   grid-column-start: 11;
   grid-column-end: 12;
-  height: 100vh;
 }
 </style>
