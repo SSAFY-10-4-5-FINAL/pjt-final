@@ -16,7 +16,7 @@ import ApartRightView from "@/components/apart/ApartRightView.vue";
 .container-fluid {
   display: grid;
   padding: 0px;
-  /* height: 100vh; */
+  height: 84vh;
 }
 
 .item:nth-child(1) {

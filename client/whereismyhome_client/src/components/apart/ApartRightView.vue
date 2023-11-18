@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from "vue";
+import ApartList from "./right-items/ApartList.vue";
 
 // Data
 const inputText = ref("");
@@ -28,7 +29,7 @@ const inputText = ref("");
         <a href="#">관심 아파트</a><span> | </span><a href="#">관심 지역</a>
       </div>
     </div>
-    <div class="list-detail-wrap item"><RouterView />></div>
+    <div class="list-detail-wrap item"><ApartList /></div>
   </div>
 </template>
 
