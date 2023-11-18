@@ -1,3 +1,3 @@
 <script setup></script>
-<template></template>
+<template><div id="map"></div></template>
 <style scoped></style>

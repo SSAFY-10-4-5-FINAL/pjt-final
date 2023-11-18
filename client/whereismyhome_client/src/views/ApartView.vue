@@ -1,9 +1,11 @@
 <script setup>
+import ApartNav from "../components/apart/ApartNav.vue";
 import ApartMapView from "../components/apart/ApartMapView.vue";
 import ApartRightView from "@/components/apart/ApartRightView.vue";
 </script>
 
 <template>
+  <ApartNav />
   <div class="container-fluid">
     <div class="item"><ApartMapView /></div>
     <div class="item"><ApartRightView /></div>
@@ -14,7 +16,7 @@ import ApartRightView from "@/components/apart/ApartRightView.vue";
 .container-fluid {
   display: grid;
   padding: 0px;
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 .item:nth-child(1) {

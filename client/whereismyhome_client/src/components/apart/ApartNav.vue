@@ -1,28 +1,28 @@
 <script setup></script>
 
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light" id="pjt-nav">
-    <div class="container-fluid" id="pjt-nav-container">
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
+  <nav class="navbar navbar-expand-lg navbar-light" id="apart-nav">
+    <div id="pjt-nav-container">
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav">
-          <TabView class="tab" tab-name="매물조회" />
-          <TabView class="tab" tab-name="커뮤니티" />
-          <TabView class="tab" tab-name="단기양도" />
+          <li>매물 조회</li>
+          <li>평당 가격 추이</li>
         </ul>
       </div>
     </div>
   </nav>
 </template>
 
-<style scoped></style>
+<style scoped>
+#apart-nav {
+  border-bottom: 1px solid;
+  height: 50px;
+}
+ul {
+  margin-left: 50px;
+}
+li {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+</style>
