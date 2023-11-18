@@ -1,5 +1,3 @@
-<script setup>
-import TheNav from "@/components/layouts/TheNav.vue";
-</script>
-<template><TheNav /></template>
+<script setup></script>
+<template></template>
 <style scoped></style>

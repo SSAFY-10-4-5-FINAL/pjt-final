@@ -5,9 +5,15 @@ import TabView from "../menu/TabView.vue";
 <template>
   <nav class="navbar navbar-expand-lg navbar-light" id="pjt-nav">
     <div class="container-fluid" id="pjt-nav-container">
-      <!-- <RouterLink :to="{ name: 'MainView' }" class="navbar-brand text-primary fw-bold" href=""> -->
-      <img id="pjt-logo" src="@/assets/img/logo.png" alt="" width="120" height="100" />
-      <!-- </RouterLink> -->
+      <RouterLink :to="{ name: 'MainView' }">
+        <img
+          id="pjt-logo"
+          src="@/assets/img/logo.png"
+          alt=""
+          width="120"
+          height="100"
+        />
+      </RouterLink>
 
       <button
         class="navbar-toggler"
@@ -16,13 +22,20 @@ import TabView from "../menu/TabView.vue";
         data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent"
         aria-expanded="false"
-        aria-label="Toggle navigation">
+        aria-label="Toggle navigation"
+      >
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav">
-          <TabView class="tab" tab-name="매물조회" />
+          <RouterLink
+            :to="{ name: 'ApartView' }"
+            style="text-decoration: none; color: inherit"
+          >
+            <TabView class="tab" tab-name="매물조회" />
+          </RouterLink>
+
           <TabView class="tab" tab-name="커뮤니티" />
           <TabView class="tab" tab-name="단기양도" />
         </ul>

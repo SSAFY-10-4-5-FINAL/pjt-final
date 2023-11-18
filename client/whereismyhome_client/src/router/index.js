@@ -1,9 +1,10 @@
-import Vue from "vue";
-import Router from "vue-router";
-import nav from "./layouts/nav";
+import { createRouter, createWebHistory } from "vue-router";
+import navRoutes from "@/router/layouts/nav";
 
-Vue.use(Router);
-
-export default new Router({
-  routes: [...nav],
+const router = createRouter({
+  history: createWebHistory(import.meta.env.BASE_URL),
+  // 각 router 파일에서 배열로 내보낸 routes들을 ...을 통해 iterable로 인식, 여기에서 읽어들이는 형태
+  routes: [...navRoutes],
 });
+
+export default router;
