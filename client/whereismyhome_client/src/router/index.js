@@ -1,8 +1,9 @@
-import { createRouter, createWebHistory } from "vue-router";
+import Vue from "vue";
+import Router from "vue-router";
+import layouts from "./layouts";
 
-const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [],
+Vue.use(Router);
+
+export default new Router({
+  routes: [...layouts],
 });
-
-export default router;
