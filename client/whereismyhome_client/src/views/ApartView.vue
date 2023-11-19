@@ -8,7 +8,7 @@ import ApartRightView from "@/components/apart/ApartRightView.vue";
   <ApartNav />
   <div class="container-fluid">
     <div class="item"><ApartMapView /></div>
-    <div class="item"><ApartRightView /></div>
+    <div class="item"><RouterView /></div>
   </div>
 </template>
 
