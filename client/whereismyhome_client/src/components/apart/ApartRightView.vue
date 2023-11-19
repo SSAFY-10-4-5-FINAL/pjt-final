@@ -26,7 +26,12 @@ const inputText = ref("");
       </div>
       <div id="star-link">
         <span>빠른 검색</span><br />
-        <a href="#">관심 아파트</a><span> | </span><a href="#">관심 지역</a>
+        <RouterLink :to="{ name: 'ApartList' }"
+          ><a href="#">관심 아파트</a></RouterLink
+        ><span> | </span>
+        <RouterLink :to="{ name: 'ApartDetail' }">
+          <a href="#">관심 지역</a>
+        </RouterLink>
       </div>
     </div>
     <div class="list-detail-wrap item">
