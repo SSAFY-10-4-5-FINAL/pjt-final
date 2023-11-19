@@ -1,9 +1,19 @@
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+
+// Data
+const apartName = ref("테스트 아파트");
+</script>
 <template>
-  <div id="detail-wrap">여기는 디테일</div>
+  <div id="detail-wrap">
+    <h2>{{ apartName }}</h2>
+  </div>
 </template>
 <style scoped>
 #detail-wrap {
-  border: 1px solid;
+  height: 125px;
+  border: 1px solid #708090;
+  margin: 0.5px;
+  padding: 4px;
 }
 </style>
