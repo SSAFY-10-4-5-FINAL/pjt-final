@@ -65,7 +65,7 @@ input {
   font: inherit;
   vertical-align: baseline;
   float: right;
-  background-color: #708090;
+  background-color: rgb(231, 231, 97);
   width: 50px;
   height: 50px;
   overflow: hidden;
