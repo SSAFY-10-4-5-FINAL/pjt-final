@@ -8,37 +8,99 @@
 	<resultMap type="apartDto" id="apartList">
 		<result column="aptCode" property="aptCode" />
 		<result column="apartmentName" property="apartmentName" />
-		<result column="dealAmount" property="dealAmount" />
+		<result column="lat" property="lat" />
+		<result column="lng" property="lng" />
+		<result column="sidoName" property="sidoName" />
+		<result column="gugunName" property="gugunName" />
+		<result column="roadName" property="roadName" />
 	</resultMap>
+	
+	<resultMap type="dongDto" id="dongList">
+		<result column="dongCode" property="dongCode" />
+		<result column="dongName" property="dongName" />
+		<result column="sidoName" property="sidoName" />
+		<result column="gugunName" property="gugunName" />
+		
+	</resultMap>
+
+	
+	<resultMap type="DealInfoDto" id="dealInfoList">
+		<result column="dealAmount" property="dealAmount" />
+		<result column="dealYear" property="dealYear" />
+		<result column="dealMonth" property="dealMonth" />
+		<result column="area" property="area" />
+		<result column="floor" property="floor" />
+	</resultMap>
+	
 
 	<select id="getAparts" resultMap="apartList">
 		select * from
-		housedeal;
-	</select>
-
-	<select id="getApartByCode" parameterType="long"
-		resultMap="apartList">
-		select * from
-		housedeal
-		where aptCode=#{aptCode};
-	</select>
-
-	<select id="getApartByDong" parameterType="string"
-		resultMap="apartList">
-		select * from
-		houseinfo
-		join housedeal
-		on houseinfo.aptCode = housedeal.aptCode
-		where dong=#{dong};
+		apart
+		join dongcode;
 	</select>
 	
-	<select id="getDealByNo" parameterType="long"
+	<select id="getApartByDongCode" parameterType="String"
+		resultMap="apartList">
+		select aptCode, apartmentName, lat, lng, sidoName, gugunName, roadName
+		from apart
+		join dongcode d
+		on apart.dongCode = d.dongCode
+		where apart.dongCode=#{dongCode};
+	</select>
+	
+	<select id="getApartBySubname" parameterType="String"
+		resultMap="apartList">
+		select aptCode, apartmentName, lat, lng, sidoName, gugunName, roadName
+		from apart
+		join dongcode d
+		on apart.dongCode = d.dongCode
+		where apart.apartmentName like concat('%', #{subName},'%');
+	</select>
+	
+	<select id="getDongBySubDong" parameterType="String"
+		resultMap="dongList">
+		select dongCode, dongName, sidoName, gugunName
+		from dongcode
+		where dongName like concat('%', #{subDong},'%');
+	</select>
+	
+	
+
+
+	<select id="getApartByCode" parameterType="long"
 		resultType="apartDto">
+		select aptCode, apartmentName, lat, lng, sidoName, gugunName, roadName
+		from apart
+		join dongcode d
+		on apart.dongCode = d.dongCode
+		where aptCode = #{aptCode};
+	</select>
+	
+	<select id="getDealListByCode" parameterType="long"
+		resultMap="dealInfoList">
+		select dealAmount, dealYear, dealMonth, area, floor
+		from apartdeal
+		where aptCode = #{aptCode};
+	</select>
+	
+	<select id="getApartByHit" parameterType="String"
+		resultMap="apartList">
+		select aptCode, apartmentName, lat, lng, sidoName, gugunName, roadName
+		from apart
+		join dongcode d
+		on apart.dongCode = d.dongCode
+		order by hit desc
+		limit 10;
+	</select>
+
+	<select id="getDealByNo" parameterType="long"
+		resultType="apartDealDto">
 		select * from
-		housedeal
-		join houseinfo
+		apartdeal
+		join apart
 		on housedeal.aptCode = houseinfo.aptCode
 		where no=#{dealNo};
 	</select>
+	
 
 </mapper>

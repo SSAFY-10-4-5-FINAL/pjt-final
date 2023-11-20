@@ -9,15 +9,11 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ApartDto {
-
-	private Long aptCode;
-	private String apartmentName;
-	private String lat;
-	private String lng;
+public class DongDto {
+	private Long dongCode;
+	private String dongName;
 	private String sidoName;
 	private String gugunName;
-	private String roadName;
 	
 }
 
