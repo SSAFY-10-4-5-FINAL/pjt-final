@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.ssafy.whereismyhome.apart.dto.response.ApartDealDto;
 import com.ssafy.whereismyhome.apart.dto.response.ApartDto;
 import com.ssafy.whereismyhome.apart.dto.response.DealInfoDto;
+import com.ssafy.whereismyhome.apart.dto.response.DongDto;
 import com.ssafy.whereismyhome.apart.model.mapper.ApartMapper;
 
 import lombok.AllArgsConstructor;
@@ -34,21 +35,46 @@ public class ApartService {
 		return apartDtoList;
 	}
 	
+	//아파트 이름 일부로 검색 -> 이름이 해당 문자열 포함하는 아파트 리스트 리턴.
+	public List<ApartDto> getApartBySubname(String subName) throws SQLException {
+		System.out.println("in service, getAgyDongCode");
+		List<ApartDto> apartDtoList = apartMapper.getApartBySubname(subName);
+		
+		return apartDtoList;
+	}
+	
+	//아파트 이름 일부로 검색 -> 이름이 해당 문자열 포함하는 아파트 리스트 리턴.
+	public List<DongDto> getDongBySubDong(String subDong) throws SQLException {
+		System.out.println("in service, subDongsearch");
+		List<DongDto> DongDtoList = apartMapper.getDongBySubDong(subDong);
+		return DongDtoList;
+	}
+		
+		
+	
+	
 	//아파트 코드로 검색->해당객체 한개 리턴 //return type :ApartDealDto
 	public ApartDto getApartByCode(Long aptCode) throws SQLException {
-		System.out.println("in service");
+		System.out.println("in service-getApartByCode");
 		ApartDto apartDto = apartMapper.getApartByCode(aptCode);
 		return apartDto;
 	}
 	
 	//아파트 코드로 검색-> 거래내역 리스트 리턴. //return type:DealInfoDto list
 	public List<DealInfoDto> getDealListByCode(Long aptCode) throws SQLException {
-		List<DealInfoDto> DealInfoDtoList = apartMapper.getDealInfoListByCode(aptCode);
+		List<DealInfoDto> DealInfoDtoList = apartMapper.getDealListByCode(aptCode);
 		return DealInfoDtoList;
 	}
 	
 	
-	
+	//조회수 순 아파트 GET(상위 10개)
+	public List<ApartDto> getApartByHit() throws SQLException {
+		System.out.println("in service, getaptlist sorted by hit");
+		List<ApartDto> apartDtoList = apartMapper.getApartByHit();
+		return apartDtoList;
+	}
+		
+		
 	//아직필요없
 	public ApartDto getDealByNo(Long dealNo) throws SQLException {
 		ApartDto apartDto = apartMapper.getDealByNo(dealNo);

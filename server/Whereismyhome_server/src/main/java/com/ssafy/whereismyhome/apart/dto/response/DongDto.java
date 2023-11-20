@@ -1,7 +1,5 @@
 package com.ssafy.whereismyhome.apart.dto.response;
 
-import java.util.List;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,9 +9,11 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ApartDealDto {
-
-	private ApartDto aptDto;
-	private List<DealInfoDto> dealInfoList;
+public class DongDto {
+	private Long dongCode;
+	private String dongName;
+	private String sidoName;
+	private String gugunName;
 	
 }
+

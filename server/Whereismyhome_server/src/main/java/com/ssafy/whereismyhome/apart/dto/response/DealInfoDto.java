@@ -11,8 +11,8 @@ import lombok.Setter;
 @AllArgsConstructor
 public class DealInfoDto {
 	private String dealAmount;
-	private int DealYear; 
-	private int DealMonth;
+	private int dealYear; 
+	private int dealMonth;
 	private String area;
 	private String floor;
 }

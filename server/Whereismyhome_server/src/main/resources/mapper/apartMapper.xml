@@ -14,6 +14,14 @@
 		<result column="gugunName" property="gugunName" />
 		<result column="roadName" property="roadName" />
 	</resultMap>
+	
+	<resultMap type="dongDto" id="dongList">
+		<result column="dongCode" property="dongCode" />
+		<result column="dongName" property="dongName" />
+		<result column="sidoName" property="sidoName" />
+		<result column="gugunName" property="gugunName" />
+		
+	</resultMap>
 
 	
 	<resultMap type="DealInfoDto" id="dealInfoList">
@@ -39,6 +47,24 @@
 		on apart.dongCode = d.dongCode
 		where apart.dongCode=#{dongCode};
 	</select>
+	
+	<select id="getApartBySubname" parameterType="String"
+		resultMap="apartList">
+		select aptCode, apartmentName, lat, lng, sidoName, gugunName, roadName
+		from apart
+		join dongcode d
+		on apart.dongCode = d.dongCode
+		where apart.apartmentName like concat('%', #{subName},'%');
+	</select>
+	
+	<select id="getDongBySubDong" parameterType="String"
+		resultMap="dongList">
+		select dongCode, dongName, sidoName, gugunName
+		from dongcode
+		where dongName like concat('%', #{subDong},'%');
+	</select>
+	
+	
 
 
 	<select id="getApartByCode" parameterType="long"
@@ -50,11 +76,21 @@
 		where aptCode = #{aptCode};
 	</select>
 	
-	<select id="getDealInfoListByCode" parameterType="long"
+	<select id="getDealListByCode" parameterType="long"
 		resultMap="dealInfoList">
 		select dealAmount, dealYear, dealMonth, area, floor
 		from apartdeal
 		where aptCode = #{aptCode};
+	</select>
+	
+	<select id="getApartByHit" parameterType="String"
+		resultMap="apartList">
+		select aptCode, apartmentName, lat, lng, sidoName, gugunName, roadName
+		from apart
+		join dongcode d
+		on apart.dongCode = d.dongCode
+		order by hit desc
+		limit 10;
 	</select>
 
 	<select id="getDealByNo" parameterType="long"
