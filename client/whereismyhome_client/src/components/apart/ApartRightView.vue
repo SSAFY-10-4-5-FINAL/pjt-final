@@ -25,6 +25,7 @@ const searchedList = ref([
 
 // Function
 const handleSearchInput = (e) => {
+  // 검색 단어 입력 시 500ms 이후에 api를 쏘고 받아온 걸 띄우기 위한 함수
   search.value = e.target.value;
 
   if (search.value.length !== 0) {
