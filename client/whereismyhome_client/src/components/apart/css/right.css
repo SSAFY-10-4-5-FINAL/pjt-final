@@ -157,6 +157,11 @@ input {
   position: fixed;
   top: 315px;
   right: 10px;
-  width: 322px;
   border: 1px solid #708090;
+  background-color: white;
+  width: 300px;
+}
+#apart-search-item {
+  border: 1px solid #708090;
+  background-color: white;
 }
