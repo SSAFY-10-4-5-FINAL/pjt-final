@@ -1,4 +1,5 @@
 import ApartRight from "@/router/apart/apart_right";
+import Community from "@/router/community/community";
 
 export default [
   {
@@ -17,5 +18,7 @@ export default [
     path: "/community",
     name: "CommunityView",
     component: () => import("@/views/CommunityView.vue"),
+    redirect: "/community/list",
+    children: Community,
   },
 ];
