@@ -124,8 +124,8 @@ input {
   cursor: pointer;
   width: 50px;
   height: 50px;
-  background: url("https://s.zigbang.com/www/images/ic_title_searchbar_30x30_nor_white.png")
-    center center / 100% no-repeat transparent;
+  background: url("https://s.zigbang.com/www/images/ic_title_searchbar_30x30_nor_white.png") center
+    center / 100% no-repeat transparent;
 }
 
 /* star part */
@@ -150,4 +150,13 @@ input {
   -webkit-box-direction: normal;
   font: inherit;
   vertical-align: baseline;
+}
+
+/* ---------- Search list part ---------- */
+#apart-search-list-wrap {
+  position: fixed;
+  top: 315px;
+  right: 10px;
+  width: 322px;
+  border: 1px solid #708090;
 }
