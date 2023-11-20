@@ -1,9 +1,7 @@
 <script setup>
-import TheNav from "./components/layouts/TheNav.vue";
+// right-bar의 아래에 적용될 view(router view의 역할)
 </script>
-
 <template>
-  <TheNav />
   <RouterView />
 </template>
 
