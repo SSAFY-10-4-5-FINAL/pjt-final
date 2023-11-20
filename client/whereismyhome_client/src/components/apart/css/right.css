@@ -2,8 +2,8 @@
   border-left: 1px solid;
   padding: 10px;
   display: grid;
-  overflow-y: auto;
-  width: 100%;
+  overflow-y: scroll;
+  /* width: 100%; */
 }
 
 /* right-bar grid 내에서 차지할 높이 설정 */
