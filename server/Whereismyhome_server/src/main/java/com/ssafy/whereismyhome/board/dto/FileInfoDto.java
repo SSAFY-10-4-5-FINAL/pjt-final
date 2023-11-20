@@ -1,5 +1,10 @@
 package com.ssafy.whereismyhome.board.dto;
 
+///all no need
+
+
+
+
 public class FileInfoDto {
 
 

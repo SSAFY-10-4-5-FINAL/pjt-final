@@ -20,7 +20,6 @@
 		<result column="dongName" property="dongName" />
 		<result column="sidoName" property="sidoName" />
 		<result column="gugunName" property="gugunName" />
-		
 	</resultMap>
 
 	

@@ -4,22 +4,18 @@
 
 <mapper namespace="com.ssafy.whereismyhome.board.model.mapper.BoardMapper">
 
-	<resultMap type="boardDto" id="article">
+	<resultMap type="boardDto" id="articlelist">
 		<result column="articleNo" property="articleNo"/>
 		<result column="userId" property="userId"/>
-		<result column="username" property="userName"/>
 		<result column="subject" property="subject"/>
 		<result column="content" property="content"/>
 		<result column="hit" property="hit"/>
-		<result column="register_time" property="registerTime"/>
-	</resultMap>
-	
-	<resultMap type="boardDto" id="viewArticle" extends="article">
-		<collection property="fileInfos" column="article_no" javaType="list" ofType="fileInfoDto" select="fileInfoList"/>
+		<result column="registerTime" property="registerTime"/>
 	</resultMap>
 
+
 	<insert id="writeArticle" parameterType="boardDto">
-		insert into board (userId, subject, content, hit, register_time)
+		insert into board (userId, subject, content, hit, registerTime)
 		values (#{userId}, #{subject}, #{content}, 0, now())
 		<selectKey resultType="int" keyProperty="articleNo" order="AFTER">
 			select last_insert_id()
@@ -37,14 +33,7 @@
 		</if>
 	</sql>
 
-	<select id="listArticle" parameterType="map" resultMap="article">
-		select b.articleNo, b.userId, b.subject, b.content, b.hit, b.register_time, m.username
-		from board b, member m
-		where b.userId = m.userId
-		<include refid="search"></include>
-		order by b.articleNo desc
-		limit #{start}, #{listsize}
-	</select>
+	
 	
 	<select id="getTotalArticleCount" parameterType="map" resultType="int">
 		select count(articleNo)
@@ -54,11 +43,23 @@
 		</where>
 	</select>
 	
-	<select id="getArticle" parameterType="int" resultMap="viewArticle">
-		select b.articleNo, b.userId, b.subject, b.content, b.hit, b.register_time, m.username 
-		from board b, member m
-		where b.userId = m.userId
-		and b.articleNo = #{articleNo}
+	
+	<select id="getArticleList"  resultMap="articlelist">
+		select articleNo, userId, subject, content, hit, registerTime
+		from board
+	
+	</select>
+	
+	<select id="getArticleByTitle" parameterType="string" resultMap="articlelist">
+		select articleNo, userId, subject, content, hit, registerTime
+		from board
+		where subject like concat('%', #{subtitle},'%');
+	</select>
+	
+	<select id="getArticleByNo"  parameterType="int" resultType="boardDto">
+		select articleNo, userId, subject, content, hit, registerTime
+		from board
+		where articleNo = #{articleNo}
 	</select>
 	
 	
@@ -79,5 +80,14 @@
 		delete from board
 		where articleNo = #{articleNo}
 	</delete>
+	
+	<select id="listArticle" parameterType="map" resultMap="articlelist">
+		select b.articleNo, b.userId, b.subject, b.content, b.hit, b.registerTime
+		from board b, member m
+		where b.userid = m.userid
+		<include refid="search"></include>
+		order by b.no desc
+		limit #{start}, #{listsize}
+	</select>
 
 </mapper>
