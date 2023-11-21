@@ -68,10 +68,10 @@ import TheFooter from "@/components/layouts/TheFooter.vue";
             </div>
           </div>
         </fieldset>
-        <div class="form-group row">
+        <div class="form-group row" id="join-submit-btn-wrap">
           <div class="col-sm-2"></div>
           <div class="col-sm-8">
-            <button type="submit" class="btn btn-primary">Join</button>
+            <button type="submit" class="btn join-submit-btn">Join</button>
           </div>
         </div>
       </form>
@@ -101,5 +101,14 @@ import TheFooter from "@/components/layouts/TheFooter.vue";
 
 .join-form #join-text-area input {
   height: 60px;
+}
+
+.join-form #join-submit-btn-wrap {
+  text-align: right;
+}
+
+.join-submit-btn {
+  background-color: rgba(238, 234, 12, 0.822);
+  color: #4d5964;
 }
 </style>
