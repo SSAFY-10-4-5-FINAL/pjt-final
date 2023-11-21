@@ -3,7 +3,7 @@ import TheFooter from "@/components/layouts/TheFooter.vue";
 </script>
 
 <template>
-  <RouterView />
+  <div>로그인 페이지</div>
   <TheFooter />
 </template>
 

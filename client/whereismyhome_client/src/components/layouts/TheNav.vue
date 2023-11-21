@@ -39,12 +39,22 @@ import TabView from "../menu/TabView.vue";
         <ul class="navbar-nav mb-2 mb-lg-0">
           <li class="nav-item">
             <h5>
-              <a class="nav-link" aria-current="page" href="#">회원가입</a>
+              <RouterLink
+                :to="{ name: 'JoinView' }"
+                class="nav-link"
+                style="text-decoration: none; color: inherit"
+                >회원가입</RouterLink
+              >
             </h5>
           </li>
           <li class="nav-item">
             <h5>
-              <a class="nav-link" aria-current="page" href="#">로그인</a>
+              <RouterLink
+                :to="{ name: 'LoginView' }"
+                class="nav-link"
+                style="text-decoration: none; color: inherit"
+                >로그인</RouterLink
+              >
             </h5>
           </li>
         </ul>
