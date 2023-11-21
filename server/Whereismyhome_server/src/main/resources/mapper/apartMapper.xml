@@ -47,14 +47,26 @@
 		where apart.dongCode=#{dongCode};
 	</select>
 	
-	<select id="getApartBySubname" parameterType="String"
-		resultMap="apartList">
+	<select id="getApartBySubname" parameterType="String" resultMap="apartList">
 		select aptCode, apartmentName, lat, lng, sidoName, gugunName, roadName
 		from apart
 		join dongcode d
 		on apart.dongCode = d.dongCode
 		where apart.apartmentName like concat('%', #{subName},'%');
 	</select>
+	
+	<select id="getStarredAparts" parameterType="long" resultType="String">
+		select aptCode
+		from starredapart
+		where id= #{userId};
+	</select>
+	
+	<select id="getStarredAreas" parameterType="long" resultType="String">
+		select dongCode
+		from starredarea
+		where id= #{userId};
+	</select>
+	
 	
 	<select id="getDongBySubDong" parameterType="String"
 		resultMap="dongList">
