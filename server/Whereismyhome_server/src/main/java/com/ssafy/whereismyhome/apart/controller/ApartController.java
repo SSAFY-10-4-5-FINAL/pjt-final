@@ -19,12 +19,9 @@ import com.ssafy.whereismyhome.apart.dto.response.ApartDealDto;
 import com.ssafy.whereismyhome.apart.dto.response.ApartDto;
 import com.ssafy.whereismyhome.apart.dto.response.DealInfoDto;
 import com.ssafy.whereismyhome.apart.dto.response.DongDto;
-import com.ssafy.whereismyhome.apart.dto.response.StarredApartListDto;
 import com.ssafy.whereismyhome.apart.model.service.ApartService;
-import com.ssafy.whereismyhome.board.dto.BoardDto;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
 @CrossOrigin(origins = { "*" }, methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE} , maxAge = 6000)
 @RestController
