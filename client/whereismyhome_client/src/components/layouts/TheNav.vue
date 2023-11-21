@@ -6,13 +6,7 @@ import TabView from "../menu/TabView.vue";
   <nav class="navbar navbar-expand-lg navbar-light" id="pjt-nav">
     <div class="container-fluid" id="pjt-nav-container">
       <RouterLink :to="{ name: 'MainView' }">
-        <img
-          id="pjt-logo"
-          src="@/assets/img/logo.png"
-          alt=""
-          width="120"
-          height="100"
-        />
+        <img id="pjt-logo" src="@/assets/img/logo.png" alt="" width="120" height="100" />
       </RouterLink>
 
       <button
@@ -22,21 +16,18 @@ import TabView from "../menu/TabView.vue";
         data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent"
         aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
+        aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav">
-          <RouterLink
-            :to="{ name: 'ApartView' }"
-            style="text-decoration: none; color: inherit"
-          >
+          <RouterLink :to="{ name: 'ApartView' }" style="text-decoration: none; color: inherit">
             <TabView class="tab" tab-name="매물조회" />
           </RouterLink>
-
-          <TabView class="tab" tab-name="커뮤니티" />
+          <RouterLink :to="{ name: 'CommunityView' }" style="text-decoration: none; color: inherit">
+            <TabView class="tab" tab-name="커뮤니티" />
+          </RouterLink>
           <TabView class="tab" tab-name="단기양도" />
         </ul>
       </div>
@@ -70,10 +61,12 @@ import TabView from "../menu/TabView.vue";
 }
 
 #pjt-nav {
-  border-bottom: 1px solid black;
+  /* position: absolute; */
+  background-color: white;
   padding-top: 1px;
   padding-bottom: 1px;
   height: 110px;
+  width: 100%;
 }
 
 #pjt-nav-container {

@@ -15,8 +15,10 @@
 
 <style scoped>
 #apart-nav {
+  border-top: 1px solid;
   border-bottom: 1px solid;
   height: 50px;
+  position: relative;
 }
 ul {
   margin-left: 50px;
