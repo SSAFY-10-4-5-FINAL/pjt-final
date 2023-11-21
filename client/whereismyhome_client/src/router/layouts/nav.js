@@ -29,4 +29,15 @@ export default [
     redirect: "/rental/list",
     children: Rental,
   },
+  // < ----------- 회원가입, 로그인 ----------- >
+  {
+    path: "/join",
+    name: "JoinView",
+    component: () => import("@/views/JoinView.vue"),
+  },
+  {
+    path: "/login",
+    name: "LoginView",
+    component: () => import("@/views/LoginView.vue"),
+  },
 ];

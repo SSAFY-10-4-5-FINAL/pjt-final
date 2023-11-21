@@ -1,4 +1,6 @@
-<script setup></script>
+<script setup>
+import TheFooter from "@/components/layouts/TheFooter.vue";
+</script>
 
 <template>
   <RouterView />
