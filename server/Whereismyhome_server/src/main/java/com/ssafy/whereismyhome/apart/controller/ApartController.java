@@ -3,8 +3,12 @@ package com.ssafy.whereismyhome.apart.controller;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,7 +17,9 @@ import com.ssafy.whereismyhome.apart.dto.response.ApartDealDto;
 import com.ssafy.whereismyhome.apart.dto.response.ApartDto;
 import com.ssafy.whereismyhome.apart.dto.response.DealInfoDto;
 import com.ssafy.whereismyhome.apart.dto.response.DongDto;
+import com.ssafy.whereismyhome.apart.dto.response.StarredApartListDto;
 import com.ssafy.whereismyhome.apart.model.service.ApartService;
+import com.ssafy.whereismyhome.board.dto.BoardDto;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -79,10 +85,6 @@ public class ApartController {
 	}
 	
 	
-		
-		
-
-	
 	//아파트코드로 검색 : 거래내역도 반환돼야함 -> 해당하는 아파트 객체 하나 ApartDealDto로 리턴/ 그안에 한 col 은 거래내역list 
 	@GetMapping("/{aptCode}")
 	public ApartDealDto getApartByCode(@PathVariable Long aptCode) throws SQLException {
@@ -114,7 +116,28 @@ public class ApartController {
 		apartDtoList = apartService.getApartByHit();
 		return apartDtoList;
 	}
-		
+	
+	
+	@PostMapping("/starred/apart")
+	public ResponseEntity getStarredAparts(@RequestBody String userId) throws SQLException {
+		System.out.println(userId);
+		List<String> starredApartList = apartService.getStarredAparts(userId);
+		return new ResponseEntity(starredApartList, HttpStatus.OK);
+	}
+	
+	
+	@PostMapping("/starred/area")
+	public ResponseEntity getStarredAreas(@RequestBody String userId) throws SQLException {
+		System.out.println(userId);
+		List<String> starredAreaList = apartService.getStarredAreas(userId);
+		return new ResponseEntity(starredAreaList, HttpStatus.OK);
+	}
+	
+
+	
+	
+	
+	
 	//아직필요없
 	@GetMapping("/deal/{dealNo}")
 	public ApartDto getDealByNo(@PathVariable Long dealNo) throws SQLException {

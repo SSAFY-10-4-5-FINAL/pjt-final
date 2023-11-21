@@ -9,6 +9,7 @@ import com.ssafy.whereismyhome.apart.dto.response.ApartDealDto;
 import com.ssafy.whereismyhome.apart.dto.response.ApartDto;
 import com.ssafy.whereismyhome.apart.dto.response.DealInfoDto;
 import com.ssafy.whereismyhome.apart.dto.response.DongDto;
+import com.ssafy.whereismyhome.apart.dto.response.StarredApartListDto;
 
 @Mapper
 public interface ApartMapper {
@@ -24,6 +25,8 @@ public interface ApartMapper {
 	
 	List<ApartDto> getApartByHit() throws SQLException;
 	
+	List<String> getStarredAparts(Long userId) throws SQLException;
+	List<String> getStarredAreas(Long userId) throws SQLException;
 	
 	//아직필요없
 	ApartDto getDealByNo(Long dealNo) throws SQLException;

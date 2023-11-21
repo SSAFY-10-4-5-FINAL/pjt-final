@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.ssafy.whereismyhome.board.model.mapper.BoardMapper">
+<mapper namespace="com.ssafy.whereismyhome.board.model.mapper.RentalBoardMapper">
 
 	<resultMap type="boardDto" id="articlelist">
 		<result column="articleNo" property="articleNo"/>
@@ -14,14 +14,55 @@
 	</resultMap>
 
 
-	<insert id="writeArticle" parameterType="boardDto">
-		insert into board (userId, subject, content, hit, registerTime)
+	<insert id="writeRentalArticle" parameterType="boardDto">
+		insert into rentalboard (userId, subject, content, hit, registerTime)
 		values (#{userId}, #{subject}, #{content}, 0, now())
 		<selectKey resultType="int" keyProperty="articleNo" order="AFTER">
 			select last_insert_id()
 		</selectKey>
 	</insert>
 
+
+	
+	<select id="getRentalArticleList"  resultMap="articlelist">
+		select articleNo, userId, subject, content, hit, registerTime
+		from rentalboard
+	
+	</select>
+	
+	<select id="getRentalArticleByTitle" parameterType="string" resultMap="articlelist">
+		select articleNo, userId, subject, content, hit, registerTime
+		from rentalboard
+		where subject like concat('%', #{subtitle},'%');
+	</select>
+	
+	<select id="getRentalArticleByNo"  parameterType="int" resultType="boardDto">
+		select articleNo, userId, subject, content, hit, registerTime
+		from rentalboard
+		where articleNo = #{articleNo}
+	</select>
+	
+	
+	<update id="updateRentalHit" parameterType="int">
+		update rentalboard
+		set hit = hit + 1
+		where articleNo = #{articleNo}
+	</update>
+	
+	<update id="modifyRentalArticle" parameterType="boardDto">
+		update rentalboard
+		set subject = #{subject}, content = #{content}
+		where articleNo = #{articleNo}
+	</update>
+	
+	
+	<delete id="deleteRentalArticle" parameterType="int">
+		delete from rentalboard
+		where articleNo = #{articleNo}
+	</delete>
+	
+	
+	
 	<sql id="search">
 		<if test="word != null and word != ''">
 			<if test="key == 'subject'">
@@ -32,62 +73,16 @@
 			</if>
 		</if>
 	</sql>
-
 	
-	
-	<select id="getTotalArticleCount" parameterType="map" resultType="int">
-		select count(articleNo)
-		from board
-		<where>
-			<include refid="search"></include>
-		</where>
-	</select>
-	
-	
-	<select id="getArticleList"  resultMap="articlelist">
-		select articleNo, userId, subject, content, hit, registerTime
-		from board
-	
-	</select>
-	
-	<select id="getArticleByTitle" parameterType="string" resultMap="articlelist">
-		select articleNo, userId, subject, content, hit, registerTime
-		from board
-		where subject like concat('%', #{subtitle},'%');
-	</select>
-	
-	<select id="getArticleByNo"  parameterType="int" resultType="boardDto">
-		select articleNo, userId, subject, content, hit, registerTime
-		from board
-		where articleNo = #{articleNo}
-	</select>
-	
-	
-	<update id="updateHit" parameterType="int">
-		update board
-		set hit = hit + 1
-		where articleNo = #{articleNo}
-	</update>
-	
-	<update id="modifyArticle" parameterType="boardDto">
-		update board
-		set subject = #{subject}, content = #{content}
-		where articleNo = #{articleNo}
-	</update>
-	
-	
-	<delete id="deleteArticle" parameterType="int">
-		delete from board
-		where articleNo = #{articleNo}
-	</delete>
-	
-	<select id="listArticle" parameterType="map" resultMap="articlelist">
+	<select id="listRentalArticle" parameterType="map" resultMap="articlelist">
 		select b.articleNo, b.userId, b.subject, b.content, b.hit, b.registerTime
-		from board b, member m
+		from rentalboard b, member m
 		where b.userid = m.userid
 		<include refid="search"></include>
 		order by b.no desc
 		limit #{start}, #{listsize}
 	</select>
+	
+	
 
 </mapper>

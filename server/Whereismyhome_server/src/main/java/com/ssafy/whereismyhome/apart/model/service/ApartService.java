@@ -9,6 +9,7 @@ import com.ssafy.whereismyhome.apart.dto.response.ApartDealDto;
 import com.ssafy.whereismyhome.apart.dto.response.ApartDto;
 import com.ssafy.whereismyhome.apart.dto.response.DealInfoDto;
 import com.ssafy.whereismyhome.apart.dto.response.DongDto;
+import com.ssafy.whereismyhome.apart.dto.response.StarredApartListDto;
 import com.ssafy.whereismyhome.apart.model.mapper.ApartMapper;
 
 import lombok.AllArgsConstructor;
@@ -73,8 +74,23 @@ public class ApartService {
 		List<ApartDto> apartDtoList = apartMapper.getApartByHit();
 		return apartDtoList;
 	}
-		
-		
+
+	//찜한 아파트 목록 불러오기 -> 인풋 id 해당하는 멤버의 찜한목록
+	public List<String> getStarredAparts(String userId) throws SQLException {
+		System.out.println("in service, getAptDongCode");
+		List<String> starredApartListDto = apartMapper.getStarredAparts(Long.valueOf(userId));
+		return starredApartListDto;
+	}
+	
+	//찜한 지역 목록 불러오기 -> 인풋 id 해당하는 멤버의 찜한목록
+	public List<String> getStarredAreas(String userId) throws SQLException {
+		List<String> starredAreaList = apartMapper.getStarredAreas(Long.valueOf(userId));
+		return starredAreaList;
+	}
+	
+	
+	
+
 	//아직필요없
 	public ApartDto getDealByNo(Long dealNo) throws SQLException {
 		ApartDto apartDto = apartMapper.getDealByNo(dealNo);

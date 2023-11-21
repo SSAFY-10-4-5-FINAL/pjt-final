@@ -28,87 +28,67 @@ import com.ssafy.whereismyhome.apart.model.service.ApartService;
 import com.ssafy.whereismyhome.board.dto.BoardDto;
 import com.ssafy.whereismyhome.board.dto.response.BoardListDto;
 import com.ssafy.whereismyhome.board.model.service.BoardService;
+import com.ssafy.whereismyhome.board.model.service.RentalBoardService;
 
 import lombok.AllArgsConstructor;
 
 
 @CrossOrigin(origins = { "*" }, methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE} , maxAge = 6000)
 @RestController
-@RequestMapping("/board")
+@RequestMapping("/rentalboard")
 @AllArgsConstructor
-public class BoardController {
+public class RentalBoardController {
 
-	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
-//	private static final String SUCCESS = "success";
-//	private static final String FAIL = "fail";
+	private static final Logger logger = LoggerFactory.getLogger(RentalBoardController.class);
+	private RentalBoardService rentalBoardService;
 
-	private BoardService boardService;
-
+	//글작성
 	@PostMapping("")
-	public ResponseEntity writeArticle(@RequestBody BoardDto boardDto) {
+	public ResponseEntity writeRentalArticle(@RequestBody BoardDto boardDto) {
 		logger.info("writeArticle boardDto - {}", boardDto);
 		try {
-			boardService.writeArticle(boardDto);
-//			return ResponseEntity.ok().build();
+			rentalBoardService.writeRentalArticle(boardDto);
 			return new ResponseEntity(HttpStatus.CREATED);
 		} catch (Exception e) {
 			return exceptionHandling(e);
 		}
 	}
-
-	
-//	@GetMapping
-//	public ResponseEntity getArticleList() throws Exception{
-//		List<BoardDto> boardDtoList = null;
-//		boardDtoList = boardService.getArticleList();
-//		return new ResponseEntity(boardDtoList, HttpStatus.CREATED);
-//	}
-//	public ResponseEntity<?> getArticleList(			
-//			@RequestParam Map<String, String> map) {
-//		logger.info("listArticle map - {}", map);
-//		try {
-//			//BoardListDto boardListDto = boardService.getArticleList(map);
-//			HttpHeaders header = new HttpHeaders();
-//			header.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
-//			return ResponseEntity.ok().headers(header).body(boardListDto);
-//		} catch (Exception e) {
-//			return exceptionHandling(e);
-//		}
-//	}
 		
+	//제목검색&전체검색
 	@GetMapping("")
-	public ResponseEntity getArticleByTitle(@RequestParam(required = false) String title) throws Exception {
-		logger.info("getArticle - 호출 : " + title);
+	public ResponseEntity getRentalArticleByTitle(@RequestParam(required = false) String title) throws Exception {
+		logger.info("getRentalArticleByTitle - 호출 : " + title);
 		if(title==null) {
-			return new ResponseEntity(boardService.getArticleList(), HttpStatus.OK);
+			System.out.println("null condition");
+			return new ResponseEntity(rentalBoardService.getRentalArticleList(), HttpStatus.OK);
 		} else {
-			return new ResponseEntity(boardService.getArticleByTitle(title), HttpStatus.OK);
+			return new ResponseEntity(rentalBoardService.getRentalArticleByTitle(title), HttpStatus.OK);
 		}
 		
 	}
 	
+	//번호검색
 	@GetMapping("/{no}")
-	public ResponseEntity<BoardDto> getArticleByNo(@PathVariable("no") int no) throws Exception {
+	public ResponseEntity<BoardDto> getRentalArticleByNo(@PathVariable("no") int no) throws Exception {
 		logger.info("getArticle - 호출 : " + no);
-		boardService.updateHit(no);
-		return new ResponseEntity<BoardDto>(boardService.getArticleByNo(no), HttpStatus.OK);
+		rentalBoardService.updateRentalHit(no);
+		return new ResponseEntity<BoardDto>(rentalBoardService.getRentalArticleByNo(no), HttpStatus.OK);
 	}
 
 	
-
-	
+	//해당번호글 수정
 	@PutMapping("/{no}")
-	public ResponseEntity<String> modifyArticle(@RequestBody BoardDto boardDto) throws Exception {
+	public ResponseEntity<String> modifyRentalArticle(@RequestBody BoardDto boardDto) throws Exception {
 		logger.info("modifyArticle - 호출 {}", boardDto);
-		boardService.modifyArticle(boardDto);
+		rentalBoardService.modifyRentalArticle(boardDto);
 		return ResponseEntity.ok().build();
 	}
 	
-
+	//해당번호글삭제
 	@DeleteMapping("/{no}")
-	public ResponseEntity<String> deleteArticle(@PathVariable("no") int no) throws Exception {
+	public ResponseEntity<String> deleteRentalArticle(@PathVariable("no") int no) throws Exception {
 		logger.info("deleteArticle - 호출");
-		boardService.deleteArticle(no);
+		rentalBoardService.deleteRentalArticle(no);
 		return ResponseEntity.ok().build();
 	}
 
