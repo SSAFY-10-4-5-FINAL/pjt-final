@@ -6,4 +6,8 @@ function listBoard() {
   return local.get(`/board`);
 }
 
-export { listBoard };
+function detailArticle(articleno) {
+  return local.get(`/board/${articleno}`);
+}
+
+export { listBoard, detailArticle };
