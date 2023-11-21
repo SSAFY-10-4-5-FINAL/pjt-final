@@ -7,20 +7,13 @@ onMounted(() => {
   getApartList();
 });
 
-const dongCode = ref({
-  dongCode: ref("1114016200"),
-});
-
 // Data
 const apartList = ref([]);
 
 // Function
 const getApartList = async () => {
-  console.log("서버에서 아파트목록 얻어오자!!!", dongCode.value);
-
-  const response = await listApart(dongCode.value);
+  const response = await listApart();
   apartList.value = response.data;
-  console.log(apartList.value);
 };
 </script>
 <template>
