@@ -1,9 +1,5 @@
-<script setup>
-import { ref } from "vue";
-import ApartBrief from "./ApartBrief.vue";
+<script setup></script>
 
-const test_count = ref(10);
-</script>
 <template>
   <ApartBrief v-for="() in test_count" />
 </template>
