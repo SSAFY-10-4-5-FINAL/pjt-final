@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { listBoard } from "@/api/community.js";
+import CommunityListItem from "./item/CommunityListItem.vue";
 
 onMounted(() => {
   getBoardList();
@@ -18,12 +19,6 @@ const getBoardList = async () => {
 </script>
 
 <template>
-  <!-- <div class="content-wrap">
-    <div class="content-header">
-      <h2>자유 게시판</h2>
-      <span><a href="#">글쓰기</a></span>
-    </div>
-  </div> -->
   <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="col-lg-10">
@@ -45,11 +40,13 @@ const getBoardList = async () => {
                 <input
                   type="text"
                   class="form-control"
-                  placeholder="검색어..." />
+                  placeholder="검색어..."
+                />
                 <button
                   class="btn btn-dark"
                   type="button"
-                  @click="getArticleList">
+                  @click="getArticleList"
+                >
                   검색
                 </button>
               </div>
@@ -66,7 +63,14 @@ const getBoardList = async () => {
               <th scope="col">작성일</th>
             </tr>
           </thead>
-          <tbody></tbody>
+
+          <tbody>
+            <CommunityListItem
+              v-for="b in boardList"
+              :key="b.articleNo"
+              :board="b"
+            ></CommunityListItem>
+          </tbody>
         </table>
       </div>
     </div>
