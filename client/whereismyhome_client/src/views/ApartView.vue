@@ -1,7 +1,6 @@
 <script setup>
 import ApartNav from "../components/apart/ApartNav.vue";
 import ApartMapView from "../components/apart/ApartMapView.vue";
-import ApartRightView from "@/components/apart/ApartRightView.vue";
 </script>
 
 <template>

@@ -61,7 +61,7 @@ import TabView from "../menu/TabView.vue";
 }
 
 #pjt-nav {
-  position: absolute;
+  /* position: absolute; */
   background-color: white;
   padding-top: 1px;
   padding-bottom: 1px;
