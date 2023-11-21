@@ -10,14 +10,14 @@ export default [
     component: () => import("@/components/community/CommunityList.vue"),
   },
   {
-    path: "view/:articleno",
-    name: "article-view",
-    // component: () => import("@/components/boards/BoardDetail.vue"),
+    path: ":communityNo",
+    name: "CommunityDetail",
+    component: () => import("@/components/community/CommunityDetail.vue"),
   },
 
   {
-    path: "modify/:articleno",
-    name: "article-modify",
-    // component: () => import("@/components/boards/BoardModify.vue"),
+    path: ":communityNo",
+    name: "CommunityModify",
+    component: () => import("@/components/community/CommunityModify.vue"),
   },
 ];

@@ -17,10 +17,7 @@ const props = defineProps({ type: String });
       <textarea class="form-control" rows="10"></textarea>
     </div>
     <div class="col-auto text-center">
-      <button type="submit" class="btn mb-3" v-if="type === 'regist'" style="color: black">
-        글작성
-      </button>
-      <button type="submit" class="btn mb-3" v-else>글수정</button>
+      <button type="submit" class="btn mb-3" style="color: black">확인</button>
       <button type="button" class="btn mb-3 ms-1">
         <RouterLink :to="{ name: 'CommunityList' }" style="text-decoration: none; color: black"
           >목록으로이동...</RouterLink
