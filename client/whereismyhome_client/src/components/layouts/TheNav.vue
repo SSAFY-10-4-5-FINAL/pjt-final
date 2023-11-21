@@ -28,7 +28,9 @@ import TabView from "../menu/TabView.vue";
           <RouterLink :to="{ name: 'CommunityView' }" style="text-decoration: none; color: inherit">
             <TabView class="tab" tab-name="커뮤니티" />
           </RouterLink>
-          <TabView class="tab" tab-name="단기양도" />
+          <RouterLink :to="{ name: 'RentalView' }" style="text-decoration: none; color: inherit">
+            <TabView class="tab" tab-name="단기양도" />
+          </RouterLink>
         </ul>
       </div>
 

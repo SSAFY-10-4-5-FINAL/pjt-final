@@ -5,11 +5,11 @@ const route = useRoute();
 const router = useRouter();
 
 function moveList() {
-  router.push({ name: "CommunityList" });
+  router.push({ name: "RentalList" });
 }
 
 function moveModify() {
-  router.push({ name: "CommunityModify" });
+  router.push({ name: "RentalModify" });
 }
 </script>
 
@@ -17,7 +17,7 @@ function moveModify() {
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-10">
-        <h2 class="my-3 py-3 text-center">게시글 보기</h2>
+        <h2 class="my-3 py-3 text-center">매물 정보</h2>
       </div>
       <div class="col-lg-10 text-start">
         <div class="row my-2">
