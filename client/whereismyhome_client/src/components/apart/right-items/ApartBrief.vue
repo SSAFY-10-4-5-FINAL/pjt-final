@@ -2,15 +2,13 @@
 import { ref } from "vue";
 
 // Data
-const apartName = ref("테스트1");
-const apartAddress = ref("메시 호드리구 규동");
-const apartDealAmount = ref(10000000);
+const props = defineProps({ index: Number, apart: Object });
 </script>
 <template>
   <div id="apart-brief-wrap">
-    <h4>{{ apartName }}</h4>
-    <p>{{ apartAddress }}</p>
-    <p>{{ apartDealAmount }}</p>
+    <h4>{{ apart.apartmentName }}</h4>
+    <p>{{ apart.sidoName + " " + apart.gugunName }}</p>
+    <p>{{ apart.roadName }}</p>
   </div>
 </template>
 <style scoped>
