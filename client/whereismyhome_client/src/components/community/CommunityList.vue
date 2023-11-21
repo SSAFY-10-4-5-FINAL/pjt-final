@@ -1,4 +1,21 @@
-<script setup></script>
+<script setup>
+import { ref, onMounted } from "vue";
+import { listBoard } from "@/api/community.js";
+
+onMounted(() => {
+  getBoardList();
+});
+
+// Data
+const boardList = ref([]);
+
+// Function
+const getBoardList = async () => {
+  const response = await listBoard();
+  boardList.value = response.data;
+  console.log(boardList.value);
+};
+</script>
 
 <template>
   <!-- <div class="content-wrap">
@@ -16,15 +33,25 @@
         <div class="row align-self-center mb-2">
           <div class="col-md-2 text-start">
             <RouterLink :to="{ name: 'CommunityWrite' }"
-              ><button type="button" class="btn btn-sm">글쓰기</button></RouterLink
+              ><button type="button" class="btn btn-sm">
+                글쓰기
+              </button></RouterLink
             >
           </div>
           <div class="col-md-5 offset-5">
             <form class="d-flex">
               <VSelect :selectOption="selectOption" @onKeySelect="changeKey" />
               <div class="input-group input-group-sm ms-1">
-                <input type="text" class="form-control" placeholder="검색어..." />
-                <button class="btn btn-dark" type="button" @click="getArticleList">검색</button>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="검색어..." />
+                <button
+                  class="btn btn-dark"
+                  type="button"
+                  @click="getArticleList">
+                  검색
+                </button>
               </div>
             </form>
           </div>
