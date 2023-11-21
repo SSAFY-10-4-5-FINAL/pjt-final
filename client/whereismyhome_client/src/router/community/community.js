@@ -1,8 +1,8 @@
 export default [
   {
     path: "write",
-    name: "article-write",
-    // component: () => import("@/components/boards/BoardWrite.vue"),
+    name: "CommunityWrite",
+    component: () => import("@/components/community/CommunityWrite.vue"),
   },
   {
     path: "list",

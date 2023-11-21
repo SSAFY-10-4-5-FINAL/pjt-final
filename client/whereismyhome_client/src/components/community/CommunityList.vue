@@ -15,7 +15,9 @@
       <div class="col-lg-10">
         <div class="row align-self-center mb-2">
           <div class="col-md-2 text-start">
-            <button type="button" class="btn btn-sm" @click="moveWrite">글쓰기</button>
+            <RouterLink :to="{ name: 'CommunityWrite' }"
+              ><button type="button" class="btn btn-sm">글쓰기</button></RouterLink
+            >
           </div>
           <div class="col-md-5 offset-5">
             <form class="d-flex">
