@@ -12,8 +12,16 @@ function listBoard() {
   return local.get(`/board`);
 }
 
-function detailArticle(articleno) {
-  return local.get(`/board/${articleno}`);
+function detailArticle(articleNo) {
+  return local.get(`/board/${articleNo}`);
 }
 
-export { writeBoard, listBoard, detailArticle };
+function modifyArticle(articleNo, article) {
+  return local.put(`/board/${articleNo}`, JSON.stringify(article));
+}
+
+function deleteArticle(articleNo) {
+  return local.put(`/board/${articleNo}`);
+}
+
+export { writeBoard, listBoard, detailArticle, modifyArticle, deleteArticle };

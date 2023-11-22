@@ -1,7 +1,7 @@
 <script setup>
 import { ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { writeBoard } from "@/api/community";
+import { detailArticle, writeBoard, modifyArticle } from "@/api/community";
 
 const router = useRouter();
 const route = useRoute();
@@ -16,6 +16,12 @@ const article = ref({
   hit: 0,
   registerTime: "",
 });
+
+if (props.mode === "modify") {
+  let { articleNo } = route.params;
+  const response = await detailArticle(articleNo);
+  article.value = response.data;
+}
 
 const subjectErrMsg = ref("");
 const contentErrMsg = ref("");
@@ -50,8 +56,7 @@ function onSubmit() {
   } else if (contentErrMsg.value) {
     alert(contentErrMsg.value);
   } else {
-    // props.mode === "regist" ? writeArticle() : updateArticle();
-    writeArticle();
+    props.mode === "regist" ? writeArticle() : updateArticle();
   }
 }
 
@@ -64,11 +69,20 @@ const writeArticle = async () => {
     router.push({ name: "CommunityList" });
   }
 };
+const updateArticle = async () => {
+  let { articleNo } = route.params;
+  const response = await modifyArticle(articleNo, article.value);
+  if (response.status == 200) {
+    let msg = "글 수정이 완료되었습니다.";
+    alert(msg);
+    router.push({ name: "CommunityList" });
+  }
+};
 </script>
 
 <template>
   <form @submit.prevent="onSubmit">
-    <div class="mb-3">
+    <div class="mb-3" v-if="mode === 'regist'">
       <label for="userid" class="form-label">작성자 ID : </label>
       <input type="text" class="form-control" v-model="article.userId" placeholder="작성자ID..." />
     </div>
