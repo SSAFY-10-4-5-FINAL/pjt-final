@@ -13,6 +13,7 @@
 		<result column="sidoName" property="sidoName" />
 		<result column="gugunName" property="gugunName" />
 		<result column="roadName" property="roadName" />
+		<result column="hit" property="hit" />
 	</resultMap>
 	
 	<resultMap type="dongDto" id="dongList">
@@ -40,7 +41,7 @@
 	
 	<select id="getApartByDongCode" parameterType="String"
 		resultMap="apartList">
-		select aptCode, apartmentName, lat, lng, sidoName, gugunName, roadName
+		select aptCode, apartmentName, lat, lng, sidoName, gugunName, roadName, hit
 		from apart
 		join dongcode d
 		on apart.dongCode = d.dongCode
@@ -48,7 +49,7 @@
 	</select>
 	
 	<select id="getApartBySubname" parameterType="String" resultMap="apartList">
-		select aptCode, apartmentName, lat, lng, sidoName, gugunName, roadName
+		select aptCode, apartmentName, lat, lng, sidoName, gugunName, roadName, hit
 		from apart
 		join dongcode d
 		on apart.dongCode = d.dongCode
@@ -80,7 +81,7 @@
 
 	<select id="getApartByCode" parameterType="long"
 		resultType="apartDto">
-		select aptCode, apartmentName, lat, lng, sidoName, gugunName, roadName
+		select aptCode, apartmentName, lat, lng, sidoName, gugunName, roadName, hit
 		from apart
 		join dongcode d
 		on apart.dongCode = d.dongCode
@@ -96,7 +97,7 @@
 	
 	<select id="getApartByHit" parameterType="String"
 		resultMap="apartList">
-		select aptCode, apartmentName, lat, lng, sidoName, gugunName, roadName
+		select aptCode, apartmentName, lat, lng, sidoName, gugunName, roadName, hit
 		from apart
 		join dongcode d
 		on apart.dongCode = d.dongCode

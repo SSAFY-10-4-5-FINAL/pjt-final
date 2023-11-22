@@ -18,6 +18,7 @@ public class ApartDto {
 	private String sidoName;
 	private String gugunName;
 	private String roadName;
+	private int hit;
 	
 }
 

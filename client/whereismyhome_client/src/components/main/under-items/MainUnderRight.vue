@@ -1,37 +1,45 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import { listNoticeBoard } from "@/api/notice.js";
 
-const testArticles = ref([
-  {
-    title: "[공지]test1",
-  },
-  {
-    title: "[공지]test2",
-  },
-  {
-    title: "[공지]test3",
-  },
-  {
-    title: "[공지]test4",
-  },
-  {
-    title: "[공지]test5",
-  },
-]);
+onMounted(() => {
+  getNoticeBoardList();
+});
+
+// Data
+const noticeList = ref([]);
+
+// Function
+const getNoticeBoardList = async () => {
+  const response = await listNoticeBoard();
+  noticeList.value = response.data;
+  console.log(noticeList.value);
+};
 </script>
 
 <template>
   <div class="right-wrap">
     <div class="right-wrap-title">
       <h2>공지사항</h2>
-      <span class="more-content"><a href="/apart">더 보기</a></span>
+      <span class="more-content"
+        ><RouterLink :to="{ name: 'NoticeList' }">더 보기</RouterLink></span
+      >
     </div>
     <table class="article-tb">
       <tbody>
-        <tr v-for="article in testArticles">
+        <tr v-for="article in noticeList">
+          <!-- <th scope="col">글번호</th>
+              <th scope="col">제목</th>
           {{
-            article.title
+            article.subject
           }}
+          &nbsp;
+          {{
+            article.content
+          }} -->
+          <th scope="col">{{ article.subject }}</th>
+          &nbsp;
+          <th scope="col">{{ article.content }}</th>
         </tr>
       </tbody>
     </table>
