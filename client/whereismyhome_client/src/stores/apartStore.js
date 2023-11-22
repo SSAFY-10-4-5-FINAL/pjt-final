@@ -1,6 +1,6 @@
 // src/stores/apartStore.js
 import { defineStore } from "pinia";
-import { listApart, searchByDongCode } from "@/api/apart";
+import { listApart, searchByDongCode, getApartByAptCode } from "@/api/apart";
 
 export const useApartStore = defineStore("apart", {
   state: () => ({
@@ -19,6 +19,14 @@ export const useApartStore = defineStore("apart", {
       try {
         const response = await searchByDongCode(dongCode);
         this.apartList = response.data;
+      } catch (error) {
+        console.error("Error fetching apart data:", error);
+      }
+    },
+    async fetchApartByAptCode(aptCode) {
+      try {
+        const response = await getApartByAptCode(aptCode);
+        this.apartList = [response.data];
       } catch (error) {
         console.error("Error fetching apart data:", error);
       }

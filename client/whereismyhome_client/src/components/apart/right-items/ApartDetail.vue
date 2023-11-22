@@ -2,12 +2,15 @@
 import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { getApartByAptCode } from "@/api/apart";
+import { useApartStore } from "@/stores/apartStore";
 
 const route = useRoute();
 const router = useRouter();
+const apartStore = useApartStore();
 
 onMounted(() => {
-  onGetApartByAptCode();
+  apartStore.fetchApartByAptCode(aptCode);
+  apart.value = apartStore.apartList[0];
 });
 
 // Data
@@ -23,11 +26,6 @@ const apart = ref({
 });
 
 // Method
-const onGetApartByAptCode = async () => {
-  const response = await getApartByAptCode(aptCode);
-  apart.value = response.data.aptDto;
-  console.log("아파트", apart.value);
-};
 </script>
 <template>
   <div id="detail-wrap">
