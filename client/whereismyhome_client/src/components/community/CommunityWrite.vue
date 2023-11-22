@@ -9,7 +9,9 @@ import CommunityFormItem from "./item/CommunityFormItem.vue";
         <h2 class="my-3 py-3 text-center">게시글 등록</h2>
       </div>
       <div class="col-lg-10 text-start">
-        <CommunityFormItem mode="regist" />
+        <Suspense>
+          <CommunityFormItem mode="regist" />
+        </Suspense>
       </div>
     </div>
   </div>
