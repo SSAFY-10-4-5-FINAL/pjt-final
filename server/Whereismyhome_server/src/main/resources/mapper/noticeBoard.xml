@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.whereismyhome.board.model.mapper.NoticeBoardMapper">
+
+	<resultMap type="boardDto" id="articlelist">
+		<result column="articleNo" property="articleNo"/>
+		<result column="userId" property="userId"/>
+		<result column="subject" property="subject"/>
+		<result column="content" property="content"/>
+		<result column="hit" property="hit"/>
+		<result column="registerTime" property="registerTime"/>
+	</resultMap>
+
+
+	<insert id="writeNoticeArticle" parameterType="boardDto">
+		insert into noticeboard (userId, subject, content, hit, registerTime)
+		values (#{userId}, #{subject}, #{content}, 0, now())
+		<selectKey resultType="int" keyProperty="articleNo" order="AFTER">
+			select last_insert_id()
+		</selectKey>
+	</insert>
+
+
+	
+	<select id="getNoticeArticleList"  resultMap="articlelist">
+		select articleNo, userId, subject, content, hit, registerTime
+		from noticeboard
+	
+	</select>
+	
+	<select id="getNoticeArticleByTitle" parameterType="string" resultMap="articlelist">
+		select articleNo, userId, subject, content, hit, registerTime
+		from noticeboard
+		where subject like concat('%', #{subtitle},'%');
+	</select>
+	
+	<select id="getNoticeArticleByNo"  parameterType="int" resultType="boardDto">
+		select articleNo, userId, subject, content, hit, registerTime
+		from noticeboard
+		where articleNo = #{articleNo}
+	</select>
+	
+	
+	<update id="updateNoticeHit" parameterType="int">
+		update noticeboard
+		set hit = hit + 1
+		where articleNo = #{articleNo}
+	</update>
+	
+	<update id="modifyNoticeArticle" parameterType="boardDto">
+		update noticeboard
+		set subject = #{subject}, content = #{content}
+		where articleNo = #{articleNo}
+	</update>
+	
+	
+	<delete id="deleteNoticeArticle" parameterType="int">
+		delete from noticeboard
+		where articleNo = #{articleNo}
+	</delete>
+	
+	
+	
+	<sql id="search">
+		<if test="word != null and word != ''">
+			<if test="key == 'subject'">
+				and subject like concat('%', #{word}, '%')
+			</if>
+			<if test="key != 'subject'">
+				and ${key} = #{word}
+			</if>
+		</if>
+	</sql>
+	
+	<select id="listNoticeArticle" parameterType="map" resultMap="articlelist">
+		select b.articleNo, b.userId, b.subject, b.content, b.hit, b.registerTime
+		from noticeboard b, member m
+		where b.userid = m.userid
+		<include refid="search"></include>
+		order by b.no desc
+		limit #{start}, #{listsize}
+	</select>
+	
+	
+
+</mapper>
