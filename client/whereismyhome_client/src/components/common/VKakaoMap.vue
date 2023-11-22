@@ -1,21 +1,25 @@
 <script setup>
 import { ref, watch, onMounted } from "vue";
+import { useApartStore } from "@/stores/apartStore";
+import VKakaoMap from "@/components/common/VKakaoMap.vue";
 
 var map;
 const positions = ref([]);
 const markers = ref([]);
 
-const props = defineProps({ aparts: Array });
-
+const apartStore = useApartStore();
+const aparts = apartStore.apartList;
+console.log(aparts);
 watch(
-  () => props.aparts.value,
-  () => {
-    // 이동할 위도 경도 위치를 생성합니다
-    var moveLatLon = new kakao.maps.LatLng(props.aparts.lat, props.aparts.lng);
-
-    // 지도 중심을 부드럽게 이동시킵니다
-    // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
-    map.panTo(moveLatLon);
+  () => aparts,
+  (newAparts) => {
+    if (newAparts.length > 0) {
+      const firstApart = newAparts[0];
+      if (firstApart.lat && firstApart.lng) {
+        var moveLatLon = new kakao.maps.LatLng(firstApart.lat, firstApart.lng);
+        map.panTo(moveLatLon);
+      }
+    }
   },
   { deep: true }
 );
@@ -35,10 +39,10 @@ onMounted(() => {
 });
 
 watch(
-  () => props.aparts.value,
+  () => aparts,
   () => {
     positions.value = [];
-    props.aparts.forEach((apart) => {
+    aparts.forEach((apart) => {
       let obj = {};
       obj.latlng = new kakao.maps.LatLng(apart.lat, apart.lng);
       obj.title = apart.apartName;

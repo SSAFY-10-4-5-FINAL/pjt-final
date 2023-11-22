@@ -1,13 +1,29 @@
 <script setup>
+import { ref, watch } from "vue";
+import { useRoute, useRouter } from "vue-router";
 import ApartNav from "../components/apart/ApartNav.vue";
 import ApartMapView from "../components/apart/ApartMapView.vue";
+
+const route = useRoute();
+const router = useRouter();
+
+const mapKey = ref(0); // ApartMapView를 새로고침하기 위한 key
+
+watch(
+  () => route.path,
+  () => {
+    mapKey.value++;
+  }
+);
 </script>
 
 <template>
   <ApartNav />
   <div class="container-fluid">
-    <div class="item"><ApartMapView /></div>
-    <div class="item"><RouterView @evt-process-to-right-view /></div>
+    <div class="item"><ApartMapView :key="mapKey" /></div>
+    <div class="item">
+      <RouterView />
+    </div>
   </div>
 </template>
 

@@ -4,8 +4,6 @@ import { useRoute, useRouter } from "vue-router";
 import { searchListDong, searchByDongCode } from "@/api/apart";
 import ApartRightUnder from "./right-items/ApartRightUnder.vue";
 
-const emit = defineEmits(["evtProcessToApartView"]);
-
 // Data
 const route = useRoute();
 const router = useRouter();
@@ -57,13 +55,19 @@ const onSearchByDongCode = () => {
     router.push({ name: "ApartList", params: { dongCode: dongCode.value } });
   }
 };
+
+const onSearchByDongCodeClick = (dongCode) => {
+  search.value = "";
+  router.push({ name: "ApartList", params: { dongCode: dongCode } });
+};
 </script>
 
 <template>
   <div class="container-fluid" id="right-bar">
     <div class="search-select-wrap item">
       <div id="toggle-btn-wrap">
-        <span class="toggle-text">아파트</span><button id="toggle-btn">toggle</button
+        <span class="toggle-text">아파트</span
+        ><button id="toggle-btn">toggle</button
         ><span class="toggle-text">지역</span>
       </div>
       <div class="search-input-liner">
@@ -73,7 +77,8 @@ const onSearchByDongCode = () => {
             placeholder="지역, 아파트 검색"
             :value="search"
             @input="handleSearchInput"
-            @keydown.tab="KeydownTab" />
+            @keydown.tab="KeydownTab"
+          />
         </div>
         <div class="btn-search-wrap">
           <button class="btn-search" @click="onSearchByDongCode"></button>
@@ -81,18 +86,18 @@ const onSearchByDongCode = () => {
       </div>
       <div id="star-link">
         <span>빠른 검색</span><br />
-        <RouterLink :to="{ name: 'ApartList', params: { dongCode: 'test' } }"
-          ><a href="#">관심 아파트</a></RouterLink
-        ><span> | </span>
+        <a href="#">관심 아파트</a><span> | </span>
         <a href="#">관심 지역</a>
       </div>
     </div>
     <div class="list-detail-wrap item">
-      <ApartRightUnder @evt-process-to-right-view="emitToApartView" />
+      <ApartRightUnder />
     </div>
     <div v-show="search.length !== 0" id="apart-search-list-wrap">
       <div v-for="value in searchList" id="apart-search-item">
-        <h3>{{ value.sidoName + " " + value.gugunName + " " + value.dongName }}</h3>
+        <h3 @click="onSearchByDongCodeClick(value.dongCode)">
+          {{ value.sidoName + " " + value.gugunName + " " + value.dongName }}
+        </h3>
       </div>
     </div>
   </div>

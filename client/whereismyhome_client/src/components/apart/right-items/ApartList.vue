@@ -1,33 +1,24 @@
 <script setup>
-import { ref, onMounted } from "vue";
-import { useRoute, useRouter } from "vue-router";
-import { searchByDongCode } from "@/api/apart";
+import { onMounted } from "vue";
+import { useRoute } from "vue-router";
+import { useApartStore } from "@/stores/apartStore";
 import ApartBrief from "./ApartBrief.vue";
 
 const route = useRoute();
-const router = useRouter();
-const emit = defineEmits(["evtProcess"]);
+const dongCode = route.params.dongCode;
+const apartStore = useApartStore();
 
 onMounted(() => {
-  getApartByDongCode();
+  apartStore.fetchApartByDongCode(dongCode);
 });
-
-// Data
-const dongCode = route.params.dongCode; // list에서 router link를 통해 받아온 params
-const apartList = ref([]);
-
-// Method
-
-const getApartByDongCode = async () => {
-  console.log(dongCode);
-  const response = await searchByDongCode(dongCode);
-  apartList.value = response.data;
-  console.log(apartList.value);
-  emit("evtProcess", apartList.value);
-};
 </script>
 
 <template>
-  <ApartBrief v-for="a in apartList" :key="a.aptCode" :apart="a"></ApartBrief>
+  <ApartBrief
+    v-for="apart in apartStore.apartList"
+    :key="apart.aptCode"
+    :apart="apart"
+  ></ApartBrief>
 </template>
+
 <style scoped></style>
