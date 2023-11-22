@@ -10,13 +10,13 @@ export default [
     component: () => import("@/components/rental/RentalList.vue"),
   },
   {
-    path: ":rentalNo",
+    path: ":articleNo",
     name: "RentalDetail",
     component: () => import("@/components/rental/RentalDetail.vue"),
   },
 
   {
-    path: ":rentalNo",
+    path: ":articleNo",
     name: "RentalModify",
     component: () => import("@/components/rental/RentalModify.vue"),
   },
