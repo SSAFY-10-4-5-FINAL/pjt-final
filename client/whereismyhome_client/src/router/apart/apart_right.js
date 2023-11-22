@@ -21,7 +21,7 @@ export default [
             component: () => import("@/components/apart/right-items/ApartList.vue"),
           },
           {
-            path: "detail",
+            path: "detail/:aptCode",
             name: "ApartDetail",
             component: () => import("@/components/apart/right-items/ApartDetail.vue"),
           },

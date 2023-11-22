@@ -14,4 +14,8 @@ function searchByDongCode(dongCode) {
   return local.get(`/apart`, { params: { dongCode } });
 }
 
-export { searchListDong, listApart, searchByDongCode };
+function getApartByAptCode(aptCode) {
+  return local.get(`/apart/${aptCode}`);
+}
+
+export { searchListDong, listApart, searchByDongCode, getApartByAptCode };

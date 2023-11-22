@@ -6,6 +6,7 @@ import ApartBrief from "./ApartBrief.vue";
 
 const route = useRoute();
 const router = useRouter();
+const emit = defineEmits(["evtProcess"]);
 
 onMounted(() => {
   getApartByDongCode();
@@ -18,9 +19,11 @@ const apartList = ref([]);
 // Method
 
 const getApartByDongCode = async () => {
+  console.log(dongCode);
   const response = await searchByDongCode(dongCode);
   apartList.value = response.data;
   console.log(apartList.value);
+  emit("evtProcess", apartList.value);
 };
 </script>
 

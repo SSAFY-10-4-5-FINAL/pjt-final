@@ -3,7 +3,8 @@ import { ref, computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { searchListDong, searchByDongCode } from "@/api/apart";
 import ApartRightUnder from "./right-items/ApartRightUnder.vue";
-import ApartSearchList from "./right-items/search_list/ApartSearchList.vue";
+
+const emit = defineEmits(["evtProcessToApartView"]);
 
 // Data
 const route = useRoute();
@@ -83,13 +84,11 @@ const onSearchByDongCode = () => {
         <RouterLink :to="{ name: 'ApartList', params: { dongCode: 'test' } }"
           ><a href="#">관심 아파트</a></RouterLink
         ><span> | </span>
-        <RouterLink :to="{ name: 'ApartDetail' }">
-          <a href="#">관심 지역</a>
-        </RouterLink>
+        <a href="#">관심 지역</a>
       </div>
     </div>
     <div class="list-detail-wrap item">
-      <ApartRightUnder />
+      <ApartRightUnder @evt-process-to-right-view="emitToApartView" />
     </div>
     <div v-show="search.length !== 0" id="apart-search-list-wrap">
       <div v-for="value in searchList" id="apart-search-item">
