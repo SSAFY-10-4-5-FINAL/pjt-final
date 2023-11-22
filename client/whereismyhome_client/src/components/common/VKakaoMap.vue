@@ -1,21 +1,19 @@
 <script setup>
 import { ref, watch, onMounted } from "vue";
 import { useApartStore } from "@/stores/apartStore";
-import VKakaoMap from "@/components/common/VKakaoMap.vue";
 
 var map;
 const positions = ref([]);
 const markers = ref([]);
 
 const apartStore = useApartStore();
-const aparts = apartStore.apartList;
-console.log(aparts);
 watch(
-  () => aparts,
+  () => apartStore.apartList,
   (newAparts) => {
+    console.log(newAparts);
     if (newAparts.length > 0) {
       const firstApart = newAparts[0];
-      if (firstApart.lat && firstApart.lng) {
+      if (firstApart.lat && firstApart.lng && map) {
         var moveLatLon = new kakao.maps.LatLng(firstApart.lat, firstApart.lng);
         map.panTo(moveLatLon);
       }
@@ -39,10 +37,10 @@ onMounted(() => {
 });
 
 watch(
-  () => aparts,
-  () => {
+  () => apartStore.apartList,
+  (newAparts) => {
     positions.value = [];
-    aparts.forEach((apart) => {
+    newAparts.forEach((apart) => {
       let obj = {};
       obj.latlng = new kakao.maps.LatLng(apart.lat, apart.lng);
       obj.title = apart.apartName;
