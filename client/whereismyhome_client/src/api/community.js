@@ -21,7 +21,7 @@ function modifyArticle(articleNo, article) {
 }
 
 function deleteArticle(articleNo) {
-  return local.put(`/board/${articleNo}`);
+  return local.delete(`/board/${articleNo}`);
 }
 
 export { writeBoard, listBoard, detailArticle, modifyArticle, deleteArticle };

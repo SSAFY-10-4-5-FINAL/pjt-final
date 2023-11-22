@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { detailArticle } from "@/api/community";
+import { detailArticle, deleteArticle } from "@/api/community";
 
 const route = useRoute();
 const router = useRouter();
@@ -27,6 +27,15 @@ function moveList() {
 
 function moveModify() {
   router.push({ name: "CommunityModify", params: { articleNo } });
+}
+
+async function onDeleteArticle() {
+  const response = await deleteArticle(articleNo);
+  if (response.status == 200) {
+    let msg = "글이 삭제되었습니다.";
+    alert(msg);
+    router.push({ name: "CommunityList" });
+  }
 }
 </script>
 
@@ -61,7 +70,7 @@ function moveModify() {
           <div class="d-flex justify-content-end">
             <button type="button" class="btn mb-3" @click="moveList">글목록</button>
             <button type="button" class="btn mb-3 ms-1" @click="moveModify">글수정</button>
-            <button type="button" class="btn mb-3 ms-1">글삭제</button>
+            <button type="button" class="btn mb-3 ms-1" @click="onDeleteArticle">글삭제</button>
           </div>
         </div>
       </div>
