@@ -1,6 +1,7 @@
 import ApartRight from "@/router/apart/apart_right";
 import Community from "@/router/community/community";
 import Rental from "@/router/rental/rental";
+import Notice from "@/router/notice/notice";
 
 export default [
   {
@@ -28,6 +29,13 @@ export default [
     component: () => import("@/views/RentalView.vue"),
     redirect: "/rental/list",
     children: Rental,
+  },
+  {
+    path: "/notice",
+    name: "NoticeView",
+    component: () => import("@/views/NoticeView.vue"),
+    redirect: "/notice/list",
+    children: Notice,
   },
   // < ----------- 회원가입, 로그인 ----------- >
   {

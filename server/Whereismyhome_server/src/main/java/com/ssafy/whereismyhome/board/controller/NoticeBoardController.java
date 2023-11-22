@@ -79,15 +79,15 @@ public class NoticeBoardController {
 	
 	//해당번호글 수정
 	@PutMapping("/{no}")
-	public ResponseEntity<String> modifyRentalArticle(@RequestBody BoardDto boardDto) throws Exception {
+	public ResponseEntity<String> modifyNoticeArticle(@RequestBody BoardDto boardDto) throws Exception {
 		logger.info("modifynoticeArticle - 호출 {}", boardDto);
-		noticeBoardService.modifyRentalArticle(boardDto);
+		noticeBoardService.modifyNoticeArticle(boardDto);
 		return ResponseEntity.ok().build();
 	}
 	
 	//해당번호글삭제
 	@DeleteMapping("/{no}")
-	public ResponseEntity<String> deleteRentalArticle(@PathVariable("no") int no) throws Exception {
+	public ResponseEntity<String> deleteNoticeArticle(@PathVariable("no") int no) throws Exception {
 		logger.info("deleteArticle - 호출");
 		noticeBoardService.deleteNoticeArticle(no);
 		return ResponseEntity.ok().build();
