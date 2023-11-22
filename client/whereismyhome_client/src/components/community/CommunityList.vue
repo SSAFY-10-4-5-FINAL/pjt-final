@@ -40,13 +40,11 @@ const getBoardList = async () => {
                 <input
                   type="text"
                   class="form-control"
-                  placeholder="검색어..."
-                />
+                  placeholder="검색어..." />
                 <button
                   class="btn btn-dark"
                   type="button"
-                  @click="getArticleList"
-                >
+                  @click="getArticleList">
                   검색
                 </button>
               </div>
@@ -68,8 +66,7 @@ const getBoardList = async () => {
             <CommunityListItem
               v-for="b in boardList"
               :key="b.articleNo"
-              :board="b"
-            ></CommunityListItem>
+              :board="b"></CommunityListItem>
           </tbody>
         </table>
       </div>
