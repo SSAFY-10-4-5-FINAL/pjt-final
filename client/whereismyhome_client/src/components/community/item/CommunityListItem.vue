@@ -13,8 +13,7 @@ console.log(props.board);
           name: 'CommunityDetail',
           params: { articleNo: board.articleNo },
         }"
-        class="article-title link-dark"
-      >
+        class="article-title link-dark">
         {{ board.subject }}
       </router-link>
     </td>

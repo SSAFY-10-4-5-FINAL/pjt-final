@@ -45,8 +45,7 @@ function moveModify() {
             <div class="clearfix align-content-center">
               <img
                 class="avatar me-2 float-md-start bg-light p-2"
-                src="https://raw.githubusercontent.com/twbs/icons/main/icons/person-fill.svg"
-              />
+                src="https://raw.githubusercontent.com/twbs/icons/main/icons/person-fill.svg" />
               <p>
                 <span class="fw-bold">{{ article.userId }}</span> <br />
                 <span class="text-secondary fw-light">
@@ -60,23 +59,9 @@ function moveModify() {
           <div class="text-secondary">{{ article.content }}</div>
           <div class="divider mt-3 mb-3"></div>
           <div class="d-flex justify-content-end">
-            <button
-              type="button"
-              class="btn btn-outline-primary mb-3"
-              @click="moveList"
-            >
-              글목록
-            </button>
-            <button
-              type="button"
-              class="btn btn-outline-success mb-3 ms-1"
-              @click="moveModify"
-            >
-              글수정
-            </button>
-            <button type="button" class="btn btn-outline-danger mb-3 ms-1">
-              글삭제
-            </button>
+            <button type="button" class="btn mb-3" @click="moveList">글목록</button>
+            <button type="button" class="btn mb-3 ms-1" @click="moveModify">글수정</button>
+            <button type="button" class="btn mb-3 ms-1">글삭제</button>
           </div>
         </div>
       </div>

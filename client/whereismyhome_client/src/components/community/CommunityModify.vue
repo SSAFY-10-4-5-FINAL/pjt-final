@@ -9,7 +9,7 @@ import CommunityFormItem from "./item/CommunityFormItem.vue";
         <h2 class="my-3 py-3 text-center">게시글 수정</h2>
       </div>
       <div class="col-lg-10 text-start">
-        <CommunityFormItem type="modify" />
+        <CommunityFormItem mode="modify" />
       </div>
     </div>
   </div>
