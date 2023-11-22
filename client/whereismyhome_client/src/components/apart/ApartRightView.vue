@@ -1,17 +1,29 @@
 <script setup>
 import { ref, computed } from "vue";
-import { searchListDong } from "@/api/apart";
+import { useRoute, useRouter } from "vue-router";
+import { searchListDong, searchByDongCode } from "@/api/apart";
 import ApartRightUnder from "./right-items/ApartRightUnder.vue";
 import ApartSearchList from "./right-items/search_list/ApartSearchList.vue";
 
 // Data
+const route = useRoute();
+const router = useRouter();
+
 const search = ref("");
 let searchList = ref([]);
 var debounce = null;
 
+const mode = ref("area"); // 기본 모드는 dong으로 검색
 const searchedList = ref([]);
+const dongCode = ref(0);
 
 // Function
+// < ----------- 검색 리스트 ----------- >
+const getSearchList = async (subdong) => {
+  const response = await searchListDong(subdong);
+  searchList.value = response.data; // searchList = {sidoName, gugunName, dongName, dongCode}
+};
+
 const handleSearchInput = (e) => {
   // 검색 단어 입력 시 500ms 이후에 api를 쏘고 받아온 걸 띄우기 위한 함수
   search.value = e.target.value;
@@ -19,9 +31,7 @@ const handleSearchInput = (e) => {
   if (search.value.length !== 0) {
     clearTimeout(debounce);
     debounce = setTimeout(() => {
-      getSearchList(search.value);
-      const filteredList = searchedList.value.filter((item) => item.jname.includes(search.value));
-      searchList.value = filteredList;
+      getSearchList(search.value); // 서버에서 동 이름 가진 정보 가져옴
     }, 500);
   } else {
     clearTimeout(debounce);
@@ -29,11 +39,22 @@ const handleSearchInput = (e) => {
       searchList.value = [];
     }, 500);
   }
+  // 동코드 저장 정보 변경
+  if (searchList.value.length !== 0) {
+    dongCode.value = searchList.value[0]["dongCode"]; // 제일 상위 지역의 동코드 저장
+  } else {
+    dongCode.value = 0;
+  }
 };
 
-const getSearchList = async (subdong) => {
-  const response = await searchListDong(subdong);
-  searchList.value = response.data; // searchList = {sidoName, gugunName, dongName, dongCode}
+// < ----------- 검색 요청 ----------- >
+const onSearchByDongCode = () => {
+  if (dongCode.value === 0) {
+    alert("검색할 곳을 입력해주세요");
+  } else {
+    search.value = "";
+    router.push({ name: "ApartList", params: { dongCode: dongCode.value } });
+  }
 };
 </script>
 
@@ -53,11 +74,14 @@ const getSearchList = async (subdong) => {
             @input="handleSearchInput"
             @keydown.tab="KeydownTab" />
         </div>
-        <div class="btn-search-wrap"><button class="btn-search"></button></div>
+        <div class="btn-search-wrap">
+          <button class="btn-search" @click="onSearchByDongCode"></button>
+        </div>
       </div>
       <div id="star-link">
         <span>빠른 검색</span><br />
-        <RouterLink :to="{ name: 'ApartList' }"><a href="#">관심 아파트</a></RouterLink
+        <RouterLink :to="{ name: 'ApartList', params: { dongCode: 'test' } }"
+          ><a href="#">관심 아파트</a></RouterLink
         ><span> | </span>
         <RouterLink :to="{ name: 'ApartDetail' }">
           <a href="#">관심 지역</a>

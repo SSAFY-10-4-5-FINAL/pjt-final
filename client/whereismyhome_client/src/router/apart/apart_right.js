@@ -16,7 +16,7 @@ export default [
             component: () => import("@/components/apart/right-items/ApartRecommend.vue"),
           },
           {
-            path: "list",
+            path: "list/:dongCode",
             name: "ApartList",
             component: () => import("@/components/apart/right-items/ApartList.vue"),
           },

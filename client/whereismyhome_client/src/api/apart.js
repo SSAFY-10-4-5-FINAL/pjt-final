@@ -10,4 +10,8 @@ function listApart() {
   return local.get(`/apart/aptlistbyhit`);
 }
 
-export { searchListDong, listApart };
+function searchByDongCode(dongCode) {
+  return local.get(`/apart`, { params: { dongCode } });
+}
+
+export { searchListDong, listApart, searchByDongCode };

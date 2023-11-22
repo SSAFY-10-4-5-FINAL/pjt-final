@@ -1,14 +1,14 @@
 <script setup>
-import { ref } from "vue";
-
 // Data
-const props = defineProps({ index: Number, apart: Object });
+const props = defineProps({ apart: Object });
+const a = props.apart;
+console.log("아파트", a.value);
 </script>
 <template>
   <div id="apart-brief-wrap">
-    <h4>{{ apart.apartmentName }}</h4>
-    <p>{{ apart.sidoName + " " + apart.gugunName }}</p>
-    <p>{{ apart.roadName }}</p>
+    <h4>{{ a.apartmentName }}</h4>
+    <p>{{ a.sidoName + " " + a.gugunName }}</p>
+    <p>{{ a.roadName }}</p>
   </div>
 </template>
 <style scoped>
