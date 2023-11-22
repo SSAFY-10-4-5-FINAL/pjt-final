@@ -1,5 +1,6 @@
 <script setup>
 import { ref, computed } from "vue";
+import { searchListDong } from "@/api/apart";
 import ApartRightUnder from "./right-items/ApartRightUnder.vue";
 import ApartSearchList from "./right-items/search_list/ApartSearchList.vue";
 
@@ -8,20 +9,7 @@ const search = ref("");
 let searchList = ref([]);
 var debounce = null;
 
-const searchedList = ref([
-  {
-    jname: "테스트 지역1",
-  },
-  {
-    jname: "테스트 지역2",
-  },
-  {
-    jname: "테스트 지역3",
-  },
-  {
-    jname: "테스트 지역4",
-  },
-]);
+const searchedList = ref([]);
 
 // Function
 const handleSearchInput = (e) => {
@@ -31,6 +19,7 @@ const handleSearchInput = (e) => {
   if (search.value.length !== 0) {
     clearTimeout(debounce);
     debounce = setTimeout(() => {
+      getSearchList(search.value);
       const filteredList = searchedList.value.filter((item) => item.jname.includes(search.value));
       searchList.value = filteredList;
     }, 500);
@@ -40,6 +29,11 @@ const handleSearchInput = (e) => {
       searchList.value = [];
     }, 500);
   }
+};
+
+const getSearchList = async (subdong) => {
+  const response = await searchListDong(subdong);
+  searchList.value = response.data; // searchList = {sidoName, gugunName, dongName, dongCode}
 };
 </script>
 
@@ -75,7 +69,7 @@ const handleSearchInput = (e) => {
     </div>
     <div v-show="search.length !== 0" id="apart-search-list-wrap">
       <div v-for="value in searchList" id="apart-search-item">
-        {{ value }}
+        <h3>{{ value.sidoName + " " + value.gugunName + " " + value.dongName }}</h3>
       </div>
     </div>
   </div>
