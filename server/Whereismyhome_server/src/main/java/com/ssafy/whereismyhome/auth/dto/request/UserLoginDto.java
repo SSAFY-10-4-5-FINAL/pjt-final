@@ -11,7 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class UserLoginDto {
 
-	private String userId;
-	private String userPwd;
+	private String loginId;
+	private String password;
 	
 }

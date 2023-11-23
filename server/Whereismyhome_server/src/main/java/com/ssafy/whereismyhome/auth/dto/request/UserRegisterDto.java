@@ -11,11 +11,10 @@ import lombok.Setter;
 @AllArgsConstructor
 public class UserRegisterDto {
 	
-	private String name;
-	private String userId;
-	private String userPwd;
-	private String userEmail;
-	private String userBirth;
-	private String userContact;
+	private String loginId;
+	private String password;
+	private String role;
+	private String nickname;
+	private String openAgreement;
 	
 }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.whereismyhome.auth.model.mapper.AuthMapper">
+	
+	<insert id="register" parameterType="userRegisterDto">
+		insert into users (loginId, password, role, nickname, openAgreement)
+		values (#{loginId}, #{password}, #{role}, #{nickname}, #{openAgreement});
+	</insert>
+	
+	<select id="getUser" parameterType="string" resultType="userDto">
+		select * from users
+		where userId=#{userId};
+	</select>
+
+</mapper>
