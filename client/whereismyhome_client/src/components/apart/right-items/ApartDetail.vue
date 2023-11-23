@@ -68,6 +68,9 @@ watch(
         <div>{{ deal.floor }}층 &nbsp; 면적: {{ deal.area }}</div>
         <!-- private String dealAmount; private int dealYear; private int dealMonth; private String area;
         private String floor; -->
+        <div id="price-per-area">
+          평당 가격: {{ Math.round((Number(deal.dealAmount) / Number(deal.area)) * 100) / 100 }}
+        </div>
       </div>
     </div>
   </div>

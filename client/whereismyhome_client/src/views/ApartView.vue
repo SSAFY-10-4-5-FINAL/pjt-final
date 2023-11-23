@@ -18,7 +18,7 @@ watch(
 </script>
 
 <template>
-  <ApartNav />
+  <!-- <ApartNav /> -->
   <div class="container-fluid">
     <div class="item"><ApartMapView :key="mapKey" /></div>
     <div class="item">
@@ -29,9 +29,10 @@ watch(
 
 <style scoped>
 .container-fluid {
+  border-top: 1px solid #4d5964;
   display: grid;
   padding: 0px;
-  height: 84vh;
+  height: 90vh;
 }
 
 .item:nth-child(1) {

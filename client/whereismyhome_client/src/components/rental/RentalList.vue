@@ -22,29 +22,21 @@ const getRentalBoardList = async () => {
   <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="col-lg-10">
-        <h2 class="my-3 py-3 text-center">자유 게시판</h2>
+        <h2 class="my-3 py-3 text-center">단기 양도 게시판</h2>
       </div>
       <div class="col-lg-10">
         <div class="row align-self-center mb-2">
           <div class="col-md-2 text-start">
             <RouterLink :to="{ name: 'RentalWrite' }"
-              ><button type="button" class="btn btn-sm">
-                글쓰기
-              </button></RouterLink
+              ><button type="button" class="btn btn-sm">글쓰기</button></RouterLink
             >
           </div>
           <div class="col-md-5 offset-5">
             <form class="d-flex">
               <VSelect :selectOption="selectOption" @onKeySelect="changeKey" />
               <div class="input-group input-group-sm ms-1">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="검색어..." />
-                <button
-                  class="btn btn-dark"
-                  type="button"
-                  @click="getRentalArticleList">
+                <input type="text" class="form-control" placeholder="검색어..." />
+                <button class="btn btn-dark" type="button" @click="getRentalArticleList">
                   검색
                 </button>
               </div>
