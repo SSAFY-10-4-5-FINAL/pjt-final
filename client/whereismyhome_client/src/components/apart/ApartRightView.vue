@@ -1,18 +1,18 @@
 <script setup>
-import { ref, computed } from "vue";
+import { ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { searchListDong, searchByDongCode } from "@/api/apart";
+import { useAuthStore } from "@/stores/authStore";
 import ApartRightUnder from "./right-items/ApartRightUnder.vue";
 
 // Data
-const route = useRoute();
 const router = useRouter();
+const authStore = useAuthStore();
 
 const search = ref("");
 let searchList = ref([]);
 var debounce = null;
 
-const mode = ref("area"); // 기본 모드는 dong으로 검색
 const searchedList = ref([]);
 const dongCode = ref(0);
 
@@ -79,7 +79,7 @@ const onSearchByDongCodeClick = (dongCode) => {
         </div>
       </div>
       <div id="star-link" style="text-align: right; margin-top: 20px">
-        <RouterLink :to="{ name: 'StarredArea', params: { userId: 1 } }"
+        <RouterLink :to="{ name: 'StarredArea', params: { loginId: authStore.loginId } }"
           ><h7>관심 지역</h7></RouterLink
         >
       </div>

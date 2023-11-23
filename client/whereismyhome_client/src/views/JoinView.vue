@@ -1,18 +1,43 @@
 <script setup>
+import { ref } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { useAuthStore } from "@/stores/authStore";
 import TheFooter from "@/components/layouts/TheFooter.vue";
+
+const route = useRoute();
+const router = useRouter();
+const authStore = useAuthStore();
+
+const registerUser = ref({
+  loginId: "",
+  password: "",
+  role: "USER",
+  nickname: "",
+  openAgreement: 1,
+});
+
+const onRegister = async () => {
+  await authStore.fetchRegister(registerUser.value);
+  alert("회원가입이 완료되었습니다.");
+  router.push({ name: "MainView" });
+};
 </script>
 
 <template>
   <div class="join-view-wrap">
     <div class="join-form-wrap">
-      <form class="join-form">
+      <div class="join-form">
         <div id="join-text-area">
           <div class="form-group row">
             <div class="col-sm-2"></div>
             <!-- 중간 정렬을 위한 추가된 div -->
             <div class="col-sm-8">
               <!-- 수정된 부분 -->
-              <input type="text" class="form-control" placeholder="아이디" />
+              <input
+                type="text"
+                class="form-control"
+                v-model="registerUser.loginId"
+                placeholder="아이디" />
             </div>
           </div>
           <div class="form-group row">
@@ -22,6 +47,7 @@ import TheFooter from "@/components/layouts/TheFooter.vue";
                 type="password"
                 class="form-control"
                 id="inputPassword3"
+                v-model="registerUser.password"
                 placeholder="비밀번호" />
             </div>
           </div>
@@ -29,9 +55,9 @@ import TheFooter from "@/components/layouts/TheFooter.vue";
             <div class="col-sm-2"></div>
             <div class="col-sm-8">
               <input
-                type="password"
+                type="text"
                 class="form-control"
-                id="inputPassword3"
+                v-model="registerUser.nickname"
                 placeholder="닉네임" />
             </div>
           </div>
@@ -52,7 +78,8 @@ import TheFooter from "@/components/layouts/TheFooter.vue";
                   type="radio"
                   name="gridRadios"
                   id="gridRadios1"
-                  value="option1"
+                  value="1"
+                  v-model="registerUser.openAgreement"
                   checked />
                 <label class="form-check-label" for="gridRadios1"> 동의 </label>
               </div>
@@ -62,7 +89,8 @@ import TheFooter from "@/components/layouts/TheFooter.vue";
                   type="radio"
                   name="gridRadios"
                   id="gridRadios2"
-                  value="option2" />
+                  value="0"
+                  v-model="registerUser.openAgreement" />
                 <label class="form-check-label" for="gridRadios2"> 비동의 </label>
               </div>
             </div>
@@ -71,10 +99,10 @@ import TheFooter from "@/components/layouts/TheFooter.vue";
         <div class="form-group row" id="join-submit-btn-wrap">
           <div class="col-sm-2"></div>
           <div class="col-sm-8">
-            <button type="submit" class="btn join-submit-btn">Join</button>
+            <button class="btn join-submit-btn" @click="onRegister">Join</button>
           </div>
         </div>
-      </form>
+      </div>
     </div>
   </div>
   <TheFooter />

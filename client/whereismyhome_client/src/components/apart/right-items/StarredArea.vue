@@ -1,24 +1,34 @@
 <script setup>
 import { ref, onMounted, watch } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
+import { useAuthStore } from "@/stores/authStore";
 import { useApartStore } from "@/stores/apartStore";
-import ApartBrief from "./ApartBrief.vue";
 
 const route = useRoute();
+const router = useRouter();
 const apartStore = useApartStore();
+const authStore = useAuthStore();
 
-const getStarredArea = (userId) => {
-  apartStore.fetchStarredArea(userId);
+const getStarredArea = (loginId) => {
+  apartStore.fetchStarredArea(loginId);
 };
 
 // 초기 로딩 시와 라우트 변경 시 데이터 호출
 const loadData = () => {
-  getStarredArea(route.params.userId);
+  getStarredArea(route.params.loginId);
 };
 
 onMounted(() => {
   // 초기 로딩 시 데이터 호출
-  loadData();
+  if (authStore.loginId === "not") {
+    console.log("로그인 안함");
+    alert("먼저 로그인을 해주세요");
+    router.push({ name: "LoginView" });
+  } else {
+    console.log("로그인 함");
+    console.log(authStore.loginId);
+    loadData();
+  }
 });
 </script>
 

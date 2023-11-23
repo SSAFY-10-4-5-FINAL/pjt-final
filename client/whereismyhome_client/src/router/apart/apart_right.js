@@ -26,7 +26,7 @@ export default [
             component: () => import("@/components/apart/right-items/ApartDetail.vue"),
           },
           {
-            path: "starred-area/:userId",
+            path: "starred-area/:loginId",
             name: "StarredArea",
             component: () => import("@/components/apart/right-items/StarredArea.vue"),
           },

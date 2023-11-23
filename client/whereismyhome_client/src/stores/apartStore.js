@@ -1,6 +1,6 @@
 // src/stores/apartStore.js
 import { defineStore } from "pinia";
-import { listApart, searchByDongCode, getApartByAptCode, getStarredAreaa } from "@/api/apart";
+import { listApart, searchByDongCode, getApartByAptCode, getStarredArea } from "@/api/apart";
 
 export const useApartStore = defineStore("apart", {
   state: () => ({
@@ -37,7 +37,8 @@ export const useApartStore = defineStore("apart", {
     async fetchStarredArea(userId) {
       try {
         this.areaList = [];
-        const response = await getStarredAreaa(userId);
+
+        const response = await getStarredArea(userId);
         const dongCodeList = response.data;
         // 병렬로 각 dongCode에 대한 요청을 보내고 응답을 기다림
         const requests = dongCodeList.map(async (dongCode) => {

@@ -1,7 +1,6 @@
 <script setup>
 import { ref, onMounted, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { getApartByAptCode } from "@/api/apart";
 import { useApartStore } from "@/stores/apartStore";
 
 const route = useRoute();

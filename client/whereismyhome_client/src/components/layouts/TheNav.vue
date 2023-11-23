@@ -1,5 +1,16 @@
 <script setup>
 import TabView from "../menu/TabView.vue";
+import { useRoute, useRouter } from "vue-router";
+import { useAuthStore } from "@/stores/authStore";
+
+const router = useRouter();
+const authStore = useAuthStore();
+
+const onLogout = () => {
+  alert("로그아웃되었습니다.");
+  authStore.fetchLogout();
+  router.push({ name: "MainView" });
+};
 </script>
 
 <template>
@@ -34,7 +45,10 @@ import TabView from "../menu/TabView.vue";
         </ul>
       </div>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div
+        class="collapse navbar-collapse"
+        id="navbarSupportedContent"
+        v-if="authStore.loginId === 'not'">
         <div class="ms-auto"></div>
         <ul class="navbar-nav mb-2 mb-lg-0">
           <li class="nav-item">
@@ -56,6 +70,24 @@ import TabView from "../menu/TabView.vue";
                 >로그인</RouterLink
               >
             </h5>
+          </li>
+        </ul>
+      </div>
+      <div v-else>
+        <div class="ms-auto"></div>
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <li class="nav-item">
+            <h5>
+              <RouterLink
+                :to="{ name: 'JoinView' }"
+                class="nav-link"
+                style="text-decoration: none; color: inherit"
+                >마이페이지</RouterLink
+              >
+            </h5>
+          </li>
+          <li class="nav-item">
+            <div class="nav-link"><h5 @click="onLogout">로그아웃</h5></div>
           </li>
         </ul>
       </div>
