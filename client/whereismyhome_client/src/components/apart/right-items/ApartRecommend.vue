@@ -19,7 +19,6 @@ onMounted(() => {
     v-for="(apart, index) in apartStore.apartList"
     :key="apart.aptCode"
     :index="index"
-    :apart="apart"
-  />
+    :apart="apart" />
 </template>
 <style scoped></style>

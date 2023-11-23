@@ -61,6 +61,6 @@ watch(
 }
 
 .apart-content {
-  text-align: left;
+  text-align: center;
 }
 </style>

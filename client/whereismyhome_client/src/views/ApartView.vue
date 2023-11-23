@@ -43,5 +43,6 @@ watch(
   /* 11번 라인에서 12 */
   grid-column-start: 11;
   grid-column-end: 12;
+  width: 100%;
 }
 </style>
