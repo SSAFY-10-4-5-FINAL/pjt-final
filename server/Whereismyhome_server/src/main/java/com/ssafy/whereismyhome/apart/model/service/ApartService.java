@@ -84,7 +84,8 @@ public class ApartService {
 	
 	//찜한 지역 목록 불러오기 -> 인풋 id 해당하는 멤버의 찜한목록
 	public List<String> getStarredAreas(String userId) throws SQLException {
-		List<String> starredAreaList = apartMapper.getStarredAreas(Long.valueOf(userId));
+		System.out.println("아이디: " + userId.substring(1, userId.length()-1));
+		List<String> starredAreaList = apartMapper.getStarredAreas(userId.substring(1, userId.length()-1));
 		return starredAreaList;
 	}
 	

@@ -62,10 +62,10 @@
 		where id= #{userId};
 	</select>
 	
-	<select id="getStarredAreas" parameterType="long" resultType="String">
+	<select id="getStarredAreas" parameterType="String" resultType="String">
 		select dongCode
 		from starredarea
-		where id= #{userId};
+		where loginId= #{userId};
 	</select>
 	
 	

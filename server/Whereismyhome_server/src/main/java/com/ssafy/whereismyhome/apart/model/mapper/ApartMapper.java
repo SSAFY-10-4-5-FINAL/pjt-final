@@ -26,7 +26,7 @@ public interface ApartMapper {
 	List<ApartDto> getApartByHit() throws SQLException;
 	
 	List<String> getStarredAparts(Long userId) throws SQLException;
-	List<String> getStarredAreas(Long userId) throws SQLException;
+	List<String> getStarredAreas(String userId) throws SQLException;
 	
 	//아직필요없
 	ApartDto getDealByNo(Long dealNo) throws SQLException;

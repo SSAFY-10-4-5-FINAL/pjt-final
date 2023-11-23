@@ -9,9 +9,9 @@
 		values (#{loginId}, #{password}, #{role}, #{nickname}, #{openAgreement});
 	</insert>
 	
-	<select id="getUser" parameterType="string" resultType="userDto">
+	<select id="login" parameterType="string" resultType="userDto">
 		select * from users
-		where userId=#{userId};
+		where loginId=#{loginId};
 	</select>
 
 </mapper>

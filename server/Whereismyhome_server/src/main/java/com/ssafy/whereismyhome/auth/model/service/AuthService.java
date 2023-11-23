@@ -24,9 +24,10 @@ public class AuthService {
 
 	public String login(UserLoginDto userLoginDto) throws SQLException {
 		UserDto loginUser = authMapper.login(userLoginDto.getLoginId());
-		if (!loginUser.getLoginId().equals(userLoginDto.getLoginId())) {
+		if (loginUser == null) {
 			return "id";
-		} else if (!loginUser.getPassword().equals(userLoginDto.getPassword())) {
+		}
+		if (!loginUser.getPassword().equals(userLoginDto.getPassword())) {
 			return "password";
 		}
 		
