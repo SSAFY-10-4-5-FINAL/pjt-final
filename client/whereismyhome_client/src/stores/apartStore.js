@@ -5,6 +5,7 @@ import { listApart, searchByDongCode, getApartByAptCode, getStarredAreaa } from 
 export const useApartStore = defineStore("apart", {
   state: () => ({
     apartList: [],
+    dealList: [], // 상세 조회 시에만 쓰일 것이므로 어차피 상세 조회한 아파트의 정보만 있음.
     areaList: [],
   }),
   actions: {
@@ -28,6 +29,7 @@ export const useApartStore = defineStore("apart", {
       try {
         const response = await getApartByAptCode(aptCode);
         this.apartList = [response.data.aptDto];
+        this.dealList = [response.data.dealInfoList];
       } catch (error) {
         console.error("Error fetching apart data:", error);
       }

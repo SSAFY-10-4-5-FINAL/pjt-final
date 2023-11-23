@@ -78,11 +78,9 @@ const onSearchByDongCodeClick = (dongCode) => {
           <button class="btn-search" @click="onSearchByDongCode"></button>
         </div>
       </div>
-      <div id="star-link" style="text-align: right">
-        <a href="#"
-          ><RouterLink :to="{ name: 'StarredArea', params: { userId: 1 } }"
-            >관심 지역</RouterLink
-          ></a
+      <div id="star-link" style="text-align: right; margin-top: 20px">
+        <RouterLink :to="{ name: 'StarredArea', params: { userId: 1 } }"
+          ><h7>관심 지역</h7></RouterLink
         >
       </div>
     </div>

@@ -110,16 +110,11 @@ const initMap = () => {
   function displayPlaces(places) {
     // 몇번째 카테고리가 선택되어 있는지 얻어옵니다
     // 이 순서는 스프라이트 이미지에서의 위치를 계산하는데 사용됩니다
-    var order = document
-      .getElementById(currCategory)
-      .getAttribute("data-order");
+    var order = document.getElementById(currCategory).getAttribute("data-order");
 
     for (var i = 0; i < places.length; i++) {
       // 마커를 생성하고 지도에 표시합니다
-      var marker = addMarker(
-        new kakao.maps.LatLng(places[i].y, places[i].x),
-        order
-      );
+      var marker = addMarker(new kakao.maps.LatLng(places[i].y, places[i].x), order);
 
       // 마커와 검색결과 항목을 클릭 했을 때
       // 장소정보를 표출하도록 클릭 이벤트를 등록합니다
@@ -133,8 +128,7 @@ const initMap = () => {
 
   // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
   function addMarker(position, order) {
-    var imageSrc =
-        "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png", // 마커 이미지 url, 스프라이트 이미지를 씁니다
+    var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png", // 마커 이미지 url, 스프라이트 이미지를 씁니다
       imageSize = new kakao.maps.Size(27, 28), // 마커 이미지의 크기
       imgOptions = {
         spriteSize: new kakao.maps.Size(72, 208), // 스프라이트 이미지의 크기
@@ -186,20 +180,11 @@ const initMap = () => {
         place.address_name +
         ")</span>";
     } else {
-      content +=
-        '    <span title="' +
-        place.address_name +
-        '">' +
-        place.address_name +
-        "</span>";
+      content += '    <span title="' + place.address_name + '">' + place.address_name + "</span>";
     }
 
     content +=
-      '    <span class="tel">' +
-      place.phone +
-      "</span>" +
-      "</div>" +
-      '<div class="after"></div>';
+      '    <span class="tel">' + place.phone + "</span>" + "</div>" + '<div class="after"></div>';
 
     contentNode.innerHTML = content;
     placeOverlay.setPosition(new kakao.maps.LatLng(place.y, place.x));
@@ -313,6 +298,7 @@ watch(
 </script>
 
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400&display=swap");
 #map {
   width: 100%;
   height: 100%;
@@ -321,7 +307,8 @@ watch(
 .map_wrap * {
   margin: 0;
   padding: 0;
-  font-family: "Malgun Gothic", dotum, "돋움", sans-serif;
+  /* font-family: "Malgun Gothic", dotum, "돋움", sans-serif; */
+  font-family: "Noto Sans KR", sans-serif;
   font-size: 12px;
 }
 .map_wrap {
