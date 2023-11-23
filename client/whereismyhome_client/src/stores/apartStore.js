@@ -26,7 +26,7 @@ export const useApartStore = defineStore("apart", {
     async fetchApartByAptCode(aptCode) {
       try {
         const response = await getApartByAptCode(aptCode);
-        this.apartList = [response.data];
+        this.apartList = [response.data.aptDto];
       } catch (error) {
         console.error("Error fetching apart data:", error);
       }

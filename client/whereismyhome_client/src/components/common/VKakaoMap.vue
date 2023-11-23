@@ -10,7 +10,6 @@ const apartStore = useApartStore();
 watch(
   () => apartStore.apartList,
   (newAparts) => {
-    console.log(newAparts);
     if (newAparts.length > 0) {
       const firstApart = newAparts[0];
       if (firstApart.lat && firstApart.lng && map) {

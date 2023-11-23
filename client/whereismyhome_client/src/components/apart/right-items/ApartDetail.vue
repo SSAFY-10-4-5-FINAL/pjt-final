@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { getApartByAptCode } from "@/api/apart";
 import { useApartStore } from "@/stores/apartStore";
@@ -10,7 +10,6 @@ const apartStore = useApartStore();
 
 onMounted(() => {
   apartStore.fetchApartByAptCode(aptCode);
-  apart.value = apartStore.apartList[0];
 });
 
 // Data
@@ -24,6 +23,15 @@ const apart = ref({
   gugunName: "",
   roadName: "",
 });
+
+watch(
+  () => apartStore.apartList,
+  (newApartList) => {
+    if (newApartList.length > 0) {
+      apart.value = newApartList[0];
+    }
+  }
+);
 
 // Method
 </script>
