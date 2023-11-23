@@ -36,7 +36,7 @@ watch(
 // Method
 </script>
 <template>
-  <div id="detail-wrap">
+  <div id="detail-wrap" style="text-align: center">
     <h2>{{ apart.apartmentName }}</h2>
     <div class="apart-content">
       <div>
@@ -61,6 +61,6 @@ watch(
 }
 
 .apart-content {
-  text-align: left;
+  text-align: center;
 }
 </style>

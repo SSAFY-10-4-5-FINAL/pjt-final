@@ -20,6 +20,6 @@ onMounted(() => {
     :key="apart.aptCode"
     :index="index"
     :apart="apart"
-  />
+    style="overflow: hidden; width: 100%" />
 </template>
 <style scoped></style>

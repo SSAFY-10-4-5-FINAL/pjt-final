@@ -58,18 +58,13 @@ const onSearchByDongCode = () => {
 
 const onSearchByDongCodeClick = (dongCode) => {
   search.value = "";
-  router.push({ name: "ApartList", params: { dongCode: dongCode } });
+  router.push({ name: "ApartList", params: { dongCode: dongCode } }, true);
 };
 </script>
 
 <template>
   <div class="container-fluid" id="right-bar">
     <div class="search-select-wrap item">
-      <div id="toggle-btn-wrap">
-        <span class="toggle-text">아파트</span
-        ><button id="toggle-btn">toggle</button
-        ><span class="toggle-text">지역</span>
-      </div>
       <div class="search-input-liner">
         <div class="input-wrap">
           <input
@@ -77,17 +72,18 @@ const onSearchByDongCodeClick = (dongCode) => {
             placeholder="지역, 아파트 검색"
             :value="search"
             @input="handleSearchInput"
-            @keydown.tab="KeydownTab"
-          />
+            @keydown.tab="KeydownTab" />
         </div>
         <div class="btn-search-wrap">
           <button class="btn-search" @click="onSearchByDongCode"></button>
         </div>
       </div>
-      <div id="star-link">
-        <span>빠른 검색</span><br />
-        <a href="#">관심 아파트</a><span> | </span>
-        <a href="#">관심 지역</a>
+      <div id="star-link" style="text-align: right">
+        <a href="#"
+          ><RouterLink :to="{ name: 'StarredArea', params: { userId: 1 } }"
+            >관심 지역</RouterLink
+          ></a
+        >
       </div>
     </div>
     <div class="list-detail-wrap item">
