@@ -5,7 +5,6 @@ import { useApartStore } from "@/stores/apartStore";
 import ApartBrief from "./ApartBrief.vue";
 
 const route = useRoute();
-const dongCode = route.params.dongCode;
 const apartStore = useApartStore();
 
 const fetchApartData = (dongCode) => {
@@ -35,7 +34,8 @@ onMounted(() => {
   <ApartBrief
     v-for="apart in apartStore.apartList"
     :key="apart.aptCode"
-    :apart="apart"></ApartBrief>
+    :apart="apart"
+    style="overflow: hidden; width: 100%"></ApartBrief>
 </template>
 
 <style scoped></style>

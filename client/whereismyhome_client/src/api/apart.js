@@ -18,4 +18,8 @@ function getApartByAptCode(aptCode) {
   return local.get(`/apart/${aptCode}`);
 }
 
-export { searchListDong, listApart, searchByDongCode, getApartByAptCode };
+function getStarredAreaa(userId) {
+  return local.post(`/apart/starred/area`, userId);
+}
+
+export { searchListDong, listApart, searchByDongCode, getApartByAptCode, getStarredAreaa };
