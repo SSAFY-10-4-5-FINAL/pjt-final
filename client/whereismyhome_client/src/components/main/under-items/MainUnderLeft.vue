@@ -21,7 +21,7 @@ const imgUrl = ref("");
   <div class="left-wrap">
     <div class="left-wrap-title"><h2>소개할게요</h2></div>
     <div class="left-wrap-content">
-      <img :src="imgUrl" alt="" style="width: 400px; height: 230px" />
+      <img :src="imgUrl" alt="" style="width: 400px; height: 200px" />
     </div>
   </div>
 </template>
