@@ -62,15 +62,10 @@ watch(
       <h5>최근 거래</h5>
       <div v-for="deal in dealList" class="deal-list-item">
         <div>
-          {{ deal.dealYear }}년 {{ deal.dealMonth }}월 &nbsp; {{ deal.dealAmount }}&nbsp;(단위: 천
-          원)
+          {{ deal.dealYear }}년 {{ deal.dealMonth }}월 &nbsp;
+          {{ deal.dealAmount }}&nbsp;(단위: 천 원)
         </div>
         <div>{{ deal.floor }}층 &nbsp; 면적: {{ deal.area }}</div>
-        <!-- private String dealAmount; private int dealYear; private int dealMonth; private String area;
-        private String floor; -->
-        <div id="price-per-area">
-          평당 가격: {{ Math.round((Number(deal.dealAmount) / Number(deal.area)) * 100) / 100 }}
-        </div>
       </div>
     </div>
   </div>

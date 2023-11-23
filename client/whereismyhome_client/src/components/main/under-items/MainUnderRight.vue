@@ -37,8 +37,8 @@ const getNoticeBoardList = async () => {
           {{
             article.content
           }} -->
-          <th scope="col">{{ article.subject }}</th>
-          &nbsp;
+          <th scope="col">[{{ article.subject }}]</th>
+          &nbsp;&nbsp;&nbsp;&nbsp;
           <th scope="col">{{ article.content }}</th>
         </tr>
       </tbody>

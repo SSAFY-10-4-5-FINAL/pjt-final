@@ -1,7 +1,6 @@
 <script setup>
 import { ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import ApartNav from "../components/apart/ApartNav.vue";
 import ApartMapView from "../components/apart/ApartMapView.vue";
 
 const route = useRoute();

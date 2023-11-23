@@ -5,7 +5,11 @@
     <div class="input-wrap">
       <input type="text" placeholder="지역, 아파트 검색" />
     </div>
-    <div class="btn-search-wrap"><button class="btn-search"></button></div>
+    <div class="btn-search-wrap">
+      <router-link :to="{ name: 'ApartView' }"
+        ><button class="btn-search"></button
+      ></router-link>
+    </div>
   </div>
 </template>
 
@@ -82,7 +86,7 @@ input {
   cursor: pointer;
   width: 50px;
   height: 50px;
-  background: url("https://s.zigbang.com/www/images/ic_title_searchbar_30x30_nor_white.png") center
-    center / 100% no-repeat transparent;
+  background: url("https://s.zigbang.com/www/images/ic_title_searchbar_30x30_nor_white.png")
+    center center / 100% no-repeat transparent;
 }
 </style>

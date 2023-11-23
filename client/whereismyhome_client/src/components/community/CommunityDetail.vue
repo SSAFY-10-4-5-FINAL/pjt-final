@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import { useAuthStore } from "@/stores/authStore";
 import { detailArticle, deleteArticle } from "@/api/community";
 
 const route = useRoute();
@@ -8,6 +9,8 @@ const router = useRouter();
 
 // const articleno = ref(route.params.articleno);
 const { articleNo } = route.params; // list에서 router link를 통해 받아온 params
+
+const authStore = useAuthStore();
 
 const article = ref({});
 
@@ -54,7 +57,8 @@ async function onDeleteArticle() {
             <div class="clearfix align-content-center">
               <img
                 class="avatar me-2 float-md-start bg-light p-2"
-                src="https://raw.githubusercontent.com/twbs/icons/main/icons/person-fill.svg" />
+                src="https://raw.githubusercontent.com/twbs/icons/main/icons/person-fill.svg"
+              />
               <p>
                 <span class="fw-bold">{{ article.userId }}</span> <br />
                 <span class="text-secondary fw-light">
@@ -68,9 +72,25 @@ async function onDeleteArticle() {
           <div class="text-secondary">{{ article.content }}</div>
           <div class="divider mt-3 mb-3"></div>
           <div class="d-flex justify-content-end">
-            <button type="button" class="btn mb-3" @click="moveList">글목록</button>
-            <button type="button" class="btn mb-3 ms-1" @click="moveModify">글수정</button>
-            <button type="button" class="btn mb-3 ms-1" @click="onDeleteArticle">글삭제</button>
+            <button type="button" class="btn mb-3" @click="moveList">
+              글목록
+            </button>
+            <button
+              type="button"
+              class="btn mb-3 ms-1"
+              @click="moveModify"
+              v-show="article.userId === authStore.loginId"
+            >
+              글수정
+            </button>
+            <button
+              type="button"
+              class="btn mb-3 ms-1"
+              @click="onDeleteArticle"
+              v-show="article.userId === authStore.loginId"
+            >
+              글삭제
+            </button>
           </div>
         </div>
       </div>

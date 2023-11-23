@@ -1,14 +1,9 @@
 package com.ssafy.whereismyhome.auth.model.service;
 
 import java.sql.SQLException;
-import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.ssafy.whereismyhome.apart.dto.response.ApartDto;
-import com.ssafy.whereismyhome.apart.dto.response.DealInfoDto;
-import com.ssafy.whereismyhome.apart.dto.response.DongDto;
-import com.ssafy.whereismyhome.apart.model.mapper.ApartMapper;
 import com.ssafy.whereismyhome.auth.dto.UserDto;
 import com.ssafy.whereismyhome.auth.dto.request.UserLoginDto;
 import com.ssafy.whereismyhome.auth.dto.request.UserRegisterDto;

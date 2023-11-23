@@ -12,7 +12,7 @@ import com.ssafy.whereismyhome.admin.dto.response.GetUserDto;
 @Mapper
 public interface AdminMapper {
 	
-	void addUser(RegisterUserDto registerUserDto) throws SQLException;
+	
 	List<GetUserDto> getUsers() throws SQLException;
 	GetUserDto getUser(String userId) throws SQLException;
 	GetUserDto searchUser(String userName) throws SQLException;

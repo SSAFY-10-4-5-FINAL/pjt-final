@@ -12,6 +12,10 @@ function listRentalBoard() {
   return local.get(`/rentalboard`);
 }
 
+function listRentalBoardBySearch(searchInput) {
+  return local.get(`/rentalboard`, { params: { title: searchInput } });
+}
+
 function detailRentalArticle(articleNo) {
   return local.get(`/rentalboard/${articleNo}`);
 }
@@ -27,6 +31,7 @@ function deleteRentalArticle(articleNo) {
 export {
   writeRentalBoard,
   listRentalBoard,
+  listRentalBoardBySearch,
   detailRentalArticle,
   modifyRentalArticle,
   deleteRentalArticle,

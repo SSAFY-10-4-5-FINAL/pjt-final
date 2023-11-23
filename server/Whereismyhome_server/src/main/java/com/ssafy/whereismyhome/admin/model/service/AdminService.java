@@ -20,11 +20,7 @@ public class AdminService {
 	
 	private AdminMapper adminMapper;
 
-	public void addUser(RegisterUserDto registerUserDto) throws SQLException {
-		adminMapper.addUser(registerUserDto);
-		List<GetUserDto> getUserDtoList = adminMapper.getUsers();
-		System.out.println(getUserDtoList);
-	}
+	
 	
 	public List<GetUserDto> getUsers() throws SQLException {
 		System.out.println("hihi");

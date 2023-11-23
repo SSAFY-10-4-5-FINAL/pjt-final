@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.whereismyhome.admin.model.mapper.AdminMapper">
+
+	<resultMap type="getUserDto" id="userList">
+		<result column="id" property="id"/>
+		<result column="loginId" property="loginId"/>
+		<result column="password" property="password"/>
+		<result column="nickname" property="nickname"/>
+		<result column="role" property="role"/>
+		<result column="openAgreement" property="openAgreement"/>
+	</resultMap>
+	
+
+	<select id="getUsers" resultMap="userList"> 
+		select * from
+		users;
+	</select>
+	
+	<select id="getUser" parameterType="string" resultType="getUserDto">
+		select * from users
+		where loginID=#{userId};
+	</select>
+	
+	<select id="searchUser" parameterType="string" resultType="getUserDto">
+		select * from users
+		where nickname = #{userName};
+	</select>
+	
+	<update id="updateUser" parameterType="updateUserDto">
+		update users set nickname = #{updateUserDto.userName}, password = #{updateUserDto.password}
+		where loginId=#{userId};
+	</update>
+	
+	<delete id="deleteUser" parameterType="string">
+		delete from users
+		where loginId = #{userId}
+	</delete>
+
+</mapper>

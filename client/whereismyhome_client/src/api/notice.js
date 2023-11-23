@@ -12,6 +12,10 @@ function listNoticeBoard() {
   return local.get(`/noticeboard`);
 }
 
+function listNoticeBoardBySearch(searchInput) {
+  return local.get(`/noticeboard`, { params: { title: searchInput } });
+}
+
 function detailNoticeArticle(articleNo) {
   return local.get(`/noticeboard/${articleNo}`);
 }
@@ -27,6 +31,7 @@ function deleteNoticeArticle(articleNo) {
 export {
   writeNoticeBoard,
   listNoticeBoard,
+  listNoticeBoardBySearch,
   detailNoticeArticle,
   modifyNoticeArticle,
   deleteNoticeArticle,

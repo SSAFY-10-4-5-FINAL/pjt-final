@@ -1,12 +1,15 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import { useAuthStore } from "@/stores/authStore";
 import { detailRentalArticle, deleteRentalArticle } from "@/api/rental";
 
 const route = useRoute();
 const router = useRouter();
 
 const { articleNo } = route.params; // list에서 router link를 통해 받아온 params
+
+const authStore = useAuthStore();
 
 const article = ref({});
 
@@ -53,7 +56,8 @@ async function onDeleteRentalArticle() {
             <div class="clearfix align-content-center">
               <img
                 class="avatar me-2 float-md-start bg-light p-2"
-                src="https://raw.githubusercontent.com/twbs/icons/main/icons/person-fill.svg" />
+                src="https://raw.githubusercontent.com/twbs/icons/main/icons/person-fill.svg"
+              />
               <p>
                 <span class="fw-bold">{{ article.userId }}</span> <br />
                 <span class="text-secondary fw-light">
@@ -73,13 +77,17 @@ async function onDeleteRentalArticle() {
             <button
               type="button"
               class="btn mb-3 ms-1"
-              @click="moveRentalModify">
+              @click="moveRentalModify"
+              v-show="article.userId === authStore.loginId"
+            >
               글수정
             </button>
             <button
               type="button"
               class="btn mb-3 ms-1"
-              @click="onDeleteRentalArticle">
+              @click="onDeleteRentalArticle"
+              v-show="article.userId === authStore.loginId"
+            >
               글삭제
             </button>
           </div>

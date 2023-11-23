@@ -13,10 +13,10 @@ import lombok.ToString;
 @ToString
 public class UpdateUserDto {
 
-	private String userName;
-	private String userPwd;
-	private String userEmail;
-	private String birthDate;
-	private String userTel;
+	private String loginId;
+	private String password;
+	private String nickname;
+	private String role;
+	private String openAgreement;
 	
 }

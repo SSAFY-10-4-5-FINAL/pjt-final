@@ -12,6 +12,10 @@ function listBoard() {
   return local.get(`/board`);
 }
 
+function listBoardBySearch(searchInput) {
+  return local.get(`/board`, { params: { title: searchInput } });
+}
+
 function detailArticle(articleNo) {
   return local.get(`/board/${articleNo}`);
 }
@@ -24,4 +28,11 @@ function deleteArticle(articleNo) {
   return local.delete(`/board/${articleNo}`);
 }
 
-export { writeBoard, listBoard, detailArticle, modifyArticle, deleteArticle };
+export {
+  writeBoard,
+  listBoard,
+  listBoardBySearch,
+  detailArticle,
+  modifyArticle,
+  deleteArticle,
+};

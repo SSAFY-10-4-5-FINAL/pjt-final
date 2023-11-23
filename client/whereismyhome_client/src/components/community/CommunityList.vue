@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted } from "vue";
-import { listBoard } from "@/api/community.js";
+import { listBoardBySearch } from "@/api/community.js";
 import CommunityListItem from "./item/CommunityListItem.vue";
 
 onMounted(() => {
@@ -9,10 +9,11 @@ onMounted(() => {
 
 // Data
 const boardList = ref([]);
+const searchInput = ref("");
 
 // Function
 const getBoardList = async () => {
-  const response = await listBoard();
+  const response = await listBoardBySearch(searchInput.value);
   boardList.value = response.data;
   console.log(boardList.value);
 };
@@ -40,11 +41,14 @@ const getBoardList = async () => {
                 <input
                   type="text"
                   class="form-control"
-                  placeholder="검색어..." />
+                  placeholder="검색어..."
+                  v-model="searchInput"
+                />
                 <button
                   class="btn btn-dark"
                   type="button"
-                  @click="getArticleList">
+                  @click="getBoardList"
+                >
                   검색
                 </button>
               </div>
@@ -66,7 +70,8 @@ const getBoardList = async () => {
             <CommunityListItem
               v-for="b in boardList"
               :key="b.articleNo"
-              :board="b"></CommunityListItem>
+              :board="b"
+            ></CommunityListItem>
           </tbody>
         </table>
       </div>

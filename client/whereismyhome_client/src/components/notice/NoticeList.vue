@@ -1,7 +1,10 @@
 <script setup>
 import { ref, onMounted } from "vue";
-import { listNoticeBoard } from "@/api/notice.js";
+import { listNoticeBoardBySearch } from "@/api/notice.js";
+import { useAuthStore } from "@/stores/authStore";
 import NoticeListItem from "./item/NoticeListItem.vue";
+
+const authStore = useAuthStore();
 
 onMounted(() => {
   getNoticeBoardList();
@@ -9,10 +12,11 @@ onMounted(() => {
 
 // Data
 const noticeList = ref([]);
+const searchInput = ref("");
 
 // Function
 const getNoticeBoardList = async () => {
-  const response = await listNoticeBoard();
+  const response = await listNoticeBoardBySearch(searchInput.value);
   noticeList.value = response.data;
   console.log(noticeList.value);
 };
@@ -26,7 +30,10 @@ const getNoticeBoardList = async () => {
       </div>
       <div class="col-lg-10">
         <div class="row align-self-center mb-2">
-          <div class="col-md-2 text-start">
+          <div
+            class="col-md-2 text-start"
+            v-show="authStore.loginId === 'admin'"
+          >
             <RouterLink :to="{ name: 'NoticeWrite' }"
               ><button type="button" class="btn btn-sm">
                 글쓰기
@@ -40,11 +47,14 @@ const getNoticeBoardList = async () => {
                 <input
                   type="text"
                   class="form-control"
-                  placeholder="검색어..." />
+                  placeholder="검색어..."
+                  v-model="searchInput"
+                />
                 <button
                   class="btn btn-dark"
                   type="button"
-                  @click="getNoticeArticleList">
+                  @click="getNoticeBoardList"
+                >
                   검색
                 </button>
               </div>
@@ -66,7 +76,8 @@ const getNoticeBoardList = async () => {
             <NoticeListItem
               v-for="b in noticeList"
               :key="b.articleNo"
-              :noticeboard="b"></NoticeListItem>
+              :noticeboard="b"
+            ></NoticeListItem>
           </tbody>
         </table>
       </div>

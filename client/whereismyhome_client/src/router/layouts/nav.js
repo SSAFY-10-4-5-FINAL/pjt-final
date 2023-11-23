@@ -48,4 +48,22 @@ export default [
     name: "LoginView",
     component: () => import("@/views/LoginView.vue"),
   },
+  {
+    path: "/admin",
+    name: "AdminView",
+    component: () => import("@/views/AdminView.vue"),
+    redirect: "/admin/list",
+    children: [
+      {
+        path: "list",
+        name: "AdminUserList",
+        component: () => import("@/components/admin/AdminUserList.vue"),
+      },
+      {
+        path: "detail/:loginId",
+        name: "AdminUserDetail",
+        component: () => import("@/components/admin/AdminUserDetail.vue"),
+      },
+    ],
+  },
 ];

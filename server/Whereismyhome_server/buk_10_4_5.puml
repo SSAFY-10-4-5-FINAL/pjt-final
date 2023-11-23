@@ -1,0 +1,287 @@
+@startuml
+class com.ssafy.whereismyhome.config.WebMvcConfiguration {
+- List<String> patterns
+- ConfirmInterceptor confirmInterceptor
++ void addInterceptors(InterceptorRegistry)
++ void addViewControllers(ViewControllerRegistry)
+}
+class com.ssafy.whereismyhome.board.controller.RentalBoardController {
+- {static} Logger logger
+- RentalBoardService rentalBoardService
++ ResponseEntity writeRentalArticle(BoardDto)
++ ResponseEntity getRentalArticleByTitle(String)
++ ResponseEntity<BoardDto> getRentalArticleByNo(int)
++ ResponseEntity<String> modifyRentalArticle(BoardDto)
++ ResponseEntity<String> deleteRentalArticle(int)
+- ResponseEntity<String> exceptionHandling(Exception)
+}
+class com.ssafy.whereismyhome.apart.dto.response.ApartDealDto {
+- ApartDto aptDto
+- List<DealInfoDto> dealInfoList
+}
+class com.ssafy.whereismyhome.apart.model.service.ApartService {
+- ApartMapper apartMapper
++ List<ApartDto> getAparts()
++ List<ApartDto> getApartByDongCode(String)
++ List<ApartDto> getApartBySubname(String)
++ List<DongDto> getDongBySubDong(String)
++ ApartDto getApartByCode(Long)
++ List<DealInfoDto> getDealListByCode(Long)
++ List<ApartDto> getApartByHit()
++ List<String> getStarredAparts(String)
++ List<String> getStarredAreas(String)
++ ApartDto getDealByNo(Long)
+}
+class com.ssafy.whereismyhome.admin.dto.response.GetUserDto {
+- String userId
+- String userName
+- String userPwd
+- String userEmail
+- String birthDate
+- String userTel
+- String joinDate
+}
+interface com.ssafy.whereismyhome.admin.model.mapper.AdminMapper {
+~ void addUser(RegisterUserDto)
+~ List<GetUserDto> getUsers()
+~ GetUserDto getUser(String)
+~ GetUserDto searchUser(String)
+~ void updateUser(String,UpdateUserDto)
+~ void deleteUser(String)
+}
+class com.ssafy.whereismyhome.admin.controller.AdminController {
+- AdminService adminService
++ void addUser(RegisterUserDto)
++ List<GetUserDto> getUsers()
++ GetUserDto getUser(String)
++ GetUserDto searchUser(String)
++ void updateUser(String,UpdateUserDto)
++ void deleteUser(String)
+}
+class com.ssafy.whereismyhome.board.dto.response.BoardListDto {
+- List<BoardDto> articles
+- int currentPage
+- int totalPageCount
++ List<BoardDto> getArticles()
++ void setArticles(List<BoardDto>)
++ int getCurrentPage()
++ void setCurrentPage(int)
++ int getTotalPageCount()
++ void setTotalPageCount(int)
+}
+class com.ssafy.whereismyhome.board.model.service.RentalBoardService {
+- RentalBoardMapper rentalBoardMapper
++ void writeRentalArticle(BoardDto)
++ List<BoardDto> getRentalArticleList()
++ void modifyRentalArticle(BoardDto)
++ void deleteRentalArticle(int)
++ List<BoardDto> getRentalArticleByTitle(String)
++ BoardDto getRentalArticleByNo(int)
++ void updateRentalHit(int)
+}
+class com.ssafy.whereismyhome.board.dto.FileInfoDto {
+- String saveFolder
+- String originalFile
+- String saveFile
++ String getSaveFolder()
++ void setSaveFolder(String)
++ String getOriginalFile()
++ void setOriginalFile(String)
++ String getSaveFile()
++ void setSaveFile(String)
++ String toString()
+}
+class com.ssafy.whereismyhome.board.dto.BoardDto {
+- int articleNo
+- String userId
+- String subject
+- String content
+- int hit
+- String registerTime
+}
+class com.ssafy.whereismyhome.auth.dto.request.UserRegisterDto {
+- String loginId
+- String password
+- String role
+- String nickname
+- String openAgreement
+}
+interface com.ssafy.whereismyhome.auth.model.mapper.AuthMapper {
+~ UserDto login(String)
+~ void register(UserRegisterDto)
+}
+interface com.ssafy.whereismyhome.board.model.mapper.BoardMapper {
+~ int getTotalArticleCount(Map<String,Object>)
+~ void writeArticle(BoardDto)
+~ void modifyArticle(BoardDto)
+~ void deleteArticle(int)
+~ List<BoardDto> getArticleList()
+~ List<BoardDto> getArticleByTitle(String)
+~ BoardDto getArticleByNo(int)
+~ void updateHit(int)
+}
+class com.ssafy.whereismyhome.admin.dto.request.RegisterUserDto {
+- String userId
+- String userName
+- String userPwd
+- String userEmail
+- String birthDate
+- String userTel
+}
+class com.ssafy.whereismyhome.admin.dto.request.UpdateUserDto {
+- String userName
+- String userPwd
+- String userEmail
+- String birthDate
+- String userTel
+}
+class com.ssafy.whereismyhome.member.controller.MemberController {
+}
+class com.ssafy.whereismyhome.apart.dto.response.DongDto {
+- Long dongCode
+- String dongName
+- String sidoName
+- String gugunName
+}
+class com.ssafy.whereismyhome.auth.model.service.AuthService {
+- AuthMapper authMapper
++ String login(UserLoginDto)
++ void register(UserRegisterDto)
+}
+class com.ssafy.whereismyhome.WhereismyhomeApplication {
++ {static} void main(String[])
+}
+class com.ssafy.whereismyhome.apart.dto.response.ApartDto {
+- Long aptCode
+- String apartmentName
+- String lat
+- String lng
+- String sidoName
+- String gugunName
+- String roadName
+- int hit
+}
+class com.ssafy.whereismyhome.admin.model.service.AdminService {
+- AdminMapper adminMapper
++ void addUser(RegisterUserDto)
++ List<GetUserDto> getUsers()
++ GetUserDto getUser(String)
++ GetUserDto searchUser(String)
++ void updateUser(String,UpdateUserDto)
++ void deleteUser(String)
+}
+interface com.ssafy.whereismyhome.board.model.mapper.NoticeBoardMapper {
+~ void writeNoticeArticle(BoardDto)
+~ void modifyNoticeArticle(BoardDto)
+~ void deleteNoticeArticle(int)
+~ List<BoardDto> getNoticeArticleList()
+~ List<BoardDto> getNoticeArticleByTitle(String)
+~ BoardDto getNoticeArticleByNo(int)
+~ void updateNoticeHit(int)
+}
+class com.ssafy.whereismyhome.apart.dto.response.StarredApartListDto {
+- List<Integer> starredApartList
+}
+class com.ssafy.whereismyhome.board.controller.BoardController {
+- {static} Logger logger
+- BoardService boardService
++ ResponseEntity writeArticle(BoardDto)
++ ResponseEntity getArticleByTitle(String)
++ ResponseEntity<BoardDto> getArticleByNo(int)
++ ResponseEntity<String> modifyArticle(BoardDto)
++ ResponseEntity<String> deleteArticle(int)
+- ResponseEntity<String> exceptionHandling(Exception)
+}
+class com.ssafy.whereismyhome.apart.dto.response.DealInfoDto {
+- String dealAmount
+- int dealYear
+- int dealMonth
+- String area
+- String floor
+}
+class com.ssafy.whereismyhome.board.controller.NoticeBoardController {
+- {static} Logger logger
+- NoticeBoardService noticeBoardService
++ ResponseEntity writeNoticeArticle(BoardDto)
++ ResponseEntity getNoticeArticleByTitle(String)
++ ResponseEntity<BoardDto> getNoticeArticleByNo(int)
++ ResponseEntity<String> modifyNoticeArticle(BoardDto)
++ ResponseEntity<String> deleteNoticeArticle(int)
+- ResponseEntity<String> exceptionHandling(Exception)
+}
+class com.ssafy.whereismyhome.auth.dto.request.UserLoginDto {
+- String loginId
+- String password
+}
+class com.ssafy.whereismyhome.auth.controller.AuthController {
+- AuthService authService
++ ResponseEntity login(UserLoginDto)
++ ResponseEntity register(UserRegisterDto)
+}
+class com.ssafy.whereismyhome.board.model.service.NoticeBoardService {
+- NoticeBoardMapper noticeBoardMapper
++ void writeNoticeArticle(BoardDto)
++ List<BoardDto> getNoticeArticleList()
++ void modifyNoticeArticle(BoardDto)
++ void deleteNoticeArticle(int)
++ List<BoardDto> getNoticeArticleByTitle(String)
++ BoardDto getNoticeArticleByNo(int)
++ void updateNoticeHit(int)
+}
+class com.ssafy.whereismyhome.apart.controller.ApartController {
+- ApartService apartService
++ ResponseEntity getAparts(String)
++ ResponseEntity getApartBySubname(String)
++ ResponseEntity getDongBySubDong(String)
++ ResponseEntity getApartByCode(Long)
++ ResponseEntity getApartByHit()
++ ResponseEntity getStarredAparts(String)
++ ResponseEntity getStarredAreas(String)
++ ApartDto getDealByNo(Long)
+}
+interface com.ssafy.whereismyhome.apart.model.mapper.ApartMapper {
+~ List<ApartDto> getAparts()
+~ List<ApartDto> getApartByDongCode(String)
+~ List<ApartDto> getApartBySubname(String)
+~ List<DongDto> getDongBySubDong(String)
+~ List<DealInfoDto> getDealListByCode(Long)
+~ ApartDto getApartByCode(Long)
+~ List<ApartDto> getApartByHit()
+~ List<String> getStarredAparts(Long)
+~ List<String> getStarredAreas(String)
+~ ApartDto getDealByNo(Long)
+}
+class com.ssafy.whereismyhome.interceptor.ConfirmInterceptor {
+}
+interface com.ssafy.whereismyhome.board.model.mapper.RentalBoardMapper {
+~ void writeRentalArticle(BoardDto)
+~ void modifyRentalArticle(BoardDto)
+~ void deleteRentalArticle(int)
+~ List<BoardDto> getRentalArticleList()
+~ List<BoardDto> getRentalArticleByTitle(String)
+~ BoardDto getRentalArticleByNo(int)
+~ void updateRentalHit(int)
+}
+class com.ssafy.whereismyhome.board.model.service.BoardService {
+- BoardMapper boardMapper
++ void writeArticle(BoardDto)
++ List<BoardDto> getArticleList()
++ void modifyArticle(BoardDto)
++ void deleteArticle(int)
++ List<BoardDto> getArticleByTitle(String)
++ BoardDto getArticleByNo(int)
++ void updateHit(int)
+}
+class com.ssafy.whereismyhome.auth.dto.UserDto {
+- String id
+- String loginId
+- String password
+- String role
+- String nickname
+- String openAgreement
+}
+
+
+org.springframework.web.servlet.config.annotation.WebMvcConfigurer <|.. com.ssafy.whereismyhome.config.WebMvcConfiguration
+org.springframework.web.servlet.HandlerInterceptor <|.. com.ssafy.whereismyhome.interceptor.ConfirmInterceptor
+@enduml
