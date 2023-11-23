@@ -1,6 +1,7 @@
 <script setup>
 import { ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import { useAuthStore } from "@/stores/authStore";
 import {
   detailNoticeArticle,
   writeNoticeBoard,
@@ -10,6 +11,8 @@ import {
 const router = useRouter();
 const route = useRoute();
 const props = defineProps({ mode: String });
+const authStore = useAuthStore();
+
 const article = ref({
   articleNo: 0,
   userId: "",
@@ -62,6 +65,7 @@ function onSubmit() {
 
 const writeNoticeArticle = async () => {
   console.log(article.value);
+  article.value.userId = authStore.loginId;
   const response = await writeNoticeBoard(article.value);
   if (response.status == 201) {
     let msg = "공지 글 작성이 완료되었습니다.";
@@ -71,6 +75,7 @@ const writeNoticeArticle = async () => {
 };
 const updateNoticeArticle = async () => {
   let { articleNo } = route.params;
+  article.value.userId = authStore.loginId;
   const response = await modifyNoticeArticle(articleNo, article.value);
   if (response.status == 200) {
     let msg = "공지 글 수정이 완료되었습니다.";
@@ -82,28 +87,22 @@ const updateNoticeArticle = async () => {
 
 <template>
   <form @submit.prevent="onSubmit">
-    <div class="mb-3" v-if="mode === 'regist'">
-      <label for="userid" class="form-label">작성자 ID : </label>
-      <input
-        type="text"
-        class="form-control"
-        v-model="article.userId"
-        placeholder="작성자ID..." />
-    </div>
     <div class="mb-3">
       <label for="subject" class="form-label">제목 : </label>
       <input
         type="text"
         class="form-control"
         v-model="article.subject"
-        placeholder="제목..." />
+        placeholder="제목..."
+      />
     </div>
     <div class="mb-3">
       <label for="content" class="form-label">내용 : </label>
       <textarea
         class="form-control"
         v-model="article.content"
-        rows="10"></textarea>
+        rows="10"
+      ></textarea>
     </div>
     <div class="col-auto text-center">
       <button type="submit" class="btn mb-3" style="color: black">확인</button>
