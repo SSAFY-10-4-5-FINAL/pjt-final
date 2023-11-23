@@ -1,14 +1,23 @@
 <script setup>
-import { ref } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { getApartByAptCode } from "@/api/apart";
+
+const route = useRoute();
+const router = useRouter();
 
 // Data
-const props = defineProps({ index: Number, apart: Object });
+const props = defineProps({ apart: Object });
+const a = props.apart;
+
+const moveToDetail = () => {
+  router.push({ name: "ApartDetail", params: { aptCode: a.aptCode } });
+};
 </script>
 <template>
   <div id="apart-brief-wrap">
-    <h4>{{ apart.apartmentName }}</h4>
-    <p>{{ apart.sidoName + " " + apart.gugunName }}</p>
-    <p>{{ apart.roadName }}</p>
+    <h4 @click="moveToDetail">{{ a.apartmentName }}</h4>
+    <p>{{ a.sidoName + " " + a.gugunName }}</p>
+    <p>{{ a.roadName }}</p>
   </div>
 </template>
 <style scoped>

@@ -1,26 +1,25 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { listApart } from "@/api/apart.js";
+import { useApartStore } from "@/stores/apartStore";
 import ApartBrief from "./ApartBrief.vue";
 
+const apartStore = useApartStore();
+
 onMounted(() => {
-  getApartList();
+  apartStore.fetchApartList();
 });
 
 // Data
-const apartList = ref([]);
 
 // Function
-const getApartList = async () => {
-  const response = await listApart();
-  apartList.value = response.data;
-};
 </script>
 <template>
   <ApartBrief
-    v-for="(apart, index) in apartList"
+    v-for="(apart, index) in apartStore.apartList"
     :key="apart.aptCode"
     :index="index"
-    :apart="apart" />
+    :apart="apart"
+  />
 </template>
 <style scoped></style>
