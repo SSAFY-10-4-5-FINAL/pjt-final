@@ -65,10 +65,6 @@ const onSearchByDongCodeClick = (dongCode) => {
 <template>
   <div class="container-fluid" id="right-bar">
     <div class="search-select-wrap item">
-      <div id="toggle-btn-wrap">
-        <span class="toggle-text">아파트</span><button id="toggle-btn">toggle</button
-        ><span class="toggle-text">지역</span>
-      </div>
       <div class="search-input-liner">
         <div class="input-wrap">
           <input
@@ -82,9 +78,7 @@ const onSearchByDongCodeClick = (dongCode) => {
           <button class="btn-search" @click="onSearchByDongCode"></button>
         </div>
       </div>
-      <div id="star-link">
-        <span>빠른 검색</span><br />
-        <a href="#">관심 아파트</a><span> | </span>
+      <div id="star-link" style="text-align: right">
         <a href="#"
           ><RouterLink :to="{ name: 'StarredArea', params: { userId: 1 } }"
             >관심 지역</RouterLink
