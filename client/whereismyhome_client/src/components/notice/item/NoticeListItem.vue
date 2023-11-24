@@ -1,12 +1,12 @@
 <script setup>
 // Data
-const props = defineProps({ noticeboard: Object });
+const props = defineProps({ index: Number, noticeboard: Object });
 console.log(props.noticeboard);
 </script>
 
 <template>
   <tr class="text-center">
-    <th scope="row">{{ noticeboard.articleNo }}</th>
+    <th scope="row">{{ index + 1 }}</th>
     <td class="text-start">
       <router-link
         :to="{

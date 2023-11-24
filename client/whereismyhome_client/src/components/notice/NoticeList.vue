@@ -30,14 +30,9 @@ const getNoticeBoardList = async () => {
       </div>
       <div class="col-lg-10">
         <div class="row align-self-center mb-2">
-          <div
-            class="col-md-2 text-start"
-            v-show="authStore.loginId === 'admin'"
-          >
+          <div class="col-md-2 text-start" v-show="authStore.loginId === 'admin'">
             <RouterLink :to="{ name: 'NoticeWrite' }"
-              ><button type="button" class="btn btn-sm">
-                글쓰기
-              </button></RouterLink
+              ><button type="button" class="btn btn-sm">글쓰기</button></RouterLink
             >
           </div>
           <div class="col-md-5 offset-5">
@@ -48,15 +43,8 @@ const getNoticeBoardList = async () => {
                   type="text"
                   class="form-control"
                   placeholder="검색어..."
-                  v-model="searchInput"
-                />
-                <button
-                  class="btn btn-dark"
-                  type="button"
-                  @click="getNoticeBoardList"
-                >
-                  검색
-                </button>
+                  v-model="searchInput" />
+                <button class="btn btn-dark" type="button" @click="getNoticeBoardList">검색</button>
               </div>
             </form>
           </div>
@@ -74,10 +62,10 @@ const getNoticeBoardList = async () => {
 
           <tbody>
             <NoticeListItem
-              v-for="b in noticeList"
+              v-for="(b, index) in noticeList"
               :key="b.articleNo"
-              :noticeboard="b"
-            ></NoticeListItem>
+              :index="index"
+              :noticeboard="b"></NoticeListItem>
           </tbody>
         </table>
       </div>

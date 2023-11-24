@@ -88,6 +88,12 @@
 		where aptCode = #{aptCode};
 	</select>
 	
+	<update id="updateApartHit" parameterType="Long">
+		update apart
+		set hit = hit + 1
+		where aptCode = #{aptCode}
+	</update>
+	
 	<select id="getDealListByCode" parameterType="long"
 		resultMap="dealInfoList">
 		select dealAmount, dealYear, dealMonth, area, floor

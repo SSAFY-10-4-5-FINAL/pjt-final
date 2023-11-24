@@ -29,9 +29,7 @@ const getRentalBoardList = async () => {
         <div class="row align-self-center mb-2">
           <div class="col-md-2 text-start">
             <RouterLink :to="{ name: 'RentalWrite' }"
-              ><button type="button" class="btn btn-sm">
-                글쓰기
-              </button></RouterLink
+              ><button type="button" class="btn btn-sm">글쓰기</button></RouterLink
             >
           </div>
           <div class="col-md-5 offset-5">
@@ -42,15 +40,8 @@ const getRentalBoardList = async () => {
                   type="text"
                   class="form-control"
                   placeholder="검색어..."
-                  v-model="searchInput"
-                />
-                <button
-                  class="btn btn-dark"
-                  type="button"
-                  @click="getRentalBoardList"
-                >
-                  검색
-                </button>
+                  v-model="searchInput" />
+                <button class="btn btn-dark" type="button" @click="getRentalBoardList">검색</button>
               </div>
             </form>
           </div>
@@ -68,10 +59,10 @@ const getRentalBoardList = async () => {
 
           <tbody>
             <RentalListItem
-              v-for="b in rentalList"
+              v-for="(b, index) in rentalList"
               :key="b.articleNo"
-              :rentalboard="b"
-            ></RentalListItem>
+              :index="index"
+              :rentalboard="b"></RentalListItem>
           </tbody>
         </table>
       </div>

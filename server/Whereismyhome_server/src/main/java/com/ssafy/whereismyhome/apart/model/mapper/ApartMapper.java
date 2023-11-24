@@ -22,6 +22,7 @@ public interface ApartMapper {
 	
 	List<DealInfoDto> getDealListByCode(Long aptCode) throws SQLException;
 	ApartDto getApartByCode(Long aptCode) throws SQLException;
+	void updateApartHit(Long aptCode) throws SQLException;
 	
 	List<ApartDto> getApartByHit() throws SQLException;
 	

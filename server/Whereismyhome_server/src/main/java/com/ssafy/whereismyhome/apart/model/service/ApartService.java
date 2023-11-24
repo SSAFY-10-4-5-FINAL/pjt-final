@@ -58,6 +58,8 @@ public class ApartService {
 	public ApartDto getApartByCode(Long aptCode) throws SQLException {
 		System.out.println("in service-getApartByCode");
 		ApartDto apartDto = apartMapper.getApartByCode(aptCode);
+		apartMapper.updateApartHit(aptCode);
+		
 		return apartDto;
 	}
 	

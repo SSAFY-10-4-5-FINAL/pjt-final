@@ -29,9 +29,7 @@ const getBoardList = async () => {
         <div class="row align-self-center mb-2">
           <div class="col-md-2 text-start">
             <RouterLink :to="{ name: 'CommunityWrite' }"
-              ><button type="button" class="btn btn-sm">
-                글쓰기
-              </button></RouterLink
+              ><button type="button" class="btn btn-sm">글쓰기</button></RouterLink
             >
           </div>
           <div class="col-md-5 offset-5">
@@ -42,15 +40,8 @@ const getBoardList = async () => {
                   type="text"
                   class="form-control"
                   placeholder="검색어..."
-                  v-model="searchInput"
-                />
-                <button
-                  class="btn btn-dark"
-                  type="button"
-                  @click="getBoardList"
-                >
-                  검색
-                </button>
+                  v-model="searchInput" />
+                <button class="btn btn-dark" type="button" @click="getBoardList">검색</button>
               </div>
             </form>
           </div>
@@ -68,10 +59,10 @@ const getBoardList = async () => {
 
           <tbody>
             <CommunityListItem
-              v-for="b in boardList"
+              v-for="(b, index) in boardList"
               :key="b.articleNo"
-              :board="b"
-            ></CommunityListItem>
+              :index="index"
+              :board="b"></CommunityListItem>
           </tbody>
         </table>
       </div>

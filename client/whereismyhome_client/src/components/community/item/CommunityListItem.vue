@@ -1,12 +1,11 @@
 <script setup>
 // Data
-const props = defineProps({ board: Object });
-console.log(props.board);
+const props = defineProps({ index: Number, board: Object });
 </script>
 
 <template>
   <tr class="text-center">
-    <th scope="row">{{ board.articleNo }}</th>
+    <th scope="row">{{ index + 1 }}</th>
     <td class="text-start">
       <router-link
         :to="{

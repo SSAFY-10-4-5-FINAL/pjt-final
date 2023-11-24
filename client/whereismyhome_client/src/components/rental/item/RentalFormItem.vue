@@ -2,11 +2,7 @@
 import { ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useAuthStore } from "@/stores/authStore";
-import {
-  detailRentalArticle,
-  writeRentalBoard,
-  modifyRentalArticle,
-} from "@/api/rental";
+import { detailRentalArticle, writeRentalBoard, modifyRentalArticle } from "@/api/rental";
 
 const router = useRouter();
 const route = useRoute();
@@ -35,7 +31,7 @@ watch(
   () => article.value.subject,
   (value) => {
     let len = value.length;
-    if (len == 0 || len > 30) {
+    if (len == 0 || len > 100) {
       subjectErrMsg.value = "제목을 확인해 주세요!!!";
     } else subjectErrMsg.value = "";
   },
@@ -89,27 +85,16 @@ const updateRentalArticle = async () => {
   <form @submit.prevent="onSubmit">
     <div class="mb-3">
       <label for="subject" class="form-label">제목 : </label>
-      <input
-        type="text"
-        class="form-control"
-        v-model="article.subject"
-        placeholder="제목..."
-      />
+      <input type="text" class="form-control" v-model="article.subject" placeholder="제목..." />
     </div>
     <div class="mb-3">
       <label for="content" class="form-label">내용 : </label>
-      <textarea
-        class="form-control"
-        v-model="article.content"
-        rows="10"
-      ></textarea>
+      <textarea class="form-control" v-model="article.content" rows="10"></textarea>
     </div>
     <div class="col-auto text-center">
       <button type="submit" class="btn mb-3" style="color: black">확인</button>
       <button type="button" class="btn mb-3 ms-1">
-        <RouterLink
-          :to="{ name: 'RentalList' }"
-          style="text-decoration: none; color: black"
+        <RouterLink :to="{ name: 'RentalList' }" style="text-decoration: none; color: black"
           >목록으로이동...</RouterLink
         >
       </button>
